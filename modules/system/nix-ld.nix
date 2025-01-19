@@ -21,6 +21,7 @@
       nspr
       nss
       stdenv.cc.cc
+      ncurses5
       util-linux
       zlib
       zstd
