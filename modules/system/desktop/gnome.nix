@@ -1,5 +1,4 @@
 {config, pkgs, inputs, ...}:
-
 {
   imports = [
     (inputs.self + /modules/system/networking/networkmanager.nix)
