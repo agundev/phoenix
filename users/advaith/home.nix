@@ -36,6 +36,7 @@
     
     # gnome
     gnome-tweaks
+    valent
 
     # system tools
     sysstat
