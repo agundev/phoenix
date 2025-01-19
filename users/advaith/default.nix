@@ -4,8 +4,11 @@
   users.users.advaith = {
     isNormalUser = true;
     description = "Advaith Gundu";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "dialout"];
+    shell = pkgs.zsh;
   };
+  
+  programs.zsh.enable = true;
   
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
