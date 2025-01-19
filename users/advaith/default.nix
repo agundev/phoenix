@@ -1,6 +1,6 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
-{
+{  
   users.users.advaith = {
     isNormalUser = true;
     description = "Advaith Gundu";
@@ -11,4 +11,5 @@
   home-manager.useUserPackages = true;
 
   home-manager.users.advaith = import ./home.nix;
+  home-manager.extraSpecialArgs = { inherit inputs; };
 }

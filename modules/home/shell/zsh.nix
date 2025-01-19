@@ -1,0 +1,28 @@
+{config, pkgs, inputs, ...}:
+
+{
+  programs.zsh = {
+    enable = true;
+    antidote = {
+      enable = true;
+      plugins = [
+        "Aloxaf/fzf-tab"
+        "zsh-users/zsh-autosuggestions"
+        "zdharma-continuum/fast-syntax-highlighting"
+      ];
+    };
+    zprof.enable = true;
+  };
+  
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+  
+  programs.fzf.enable = true;
+  
+  programs.eza = {
+    enable = true;
+    icons = "auto";
+  };
+}

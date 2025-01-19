@@ -1,6 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
+  imports = [
+    (inputs.self + /modules/home/shell/zsh.nix)
+  ];
+
   home.username = "advaith";
   home.homeDirectory = "/home/advaith";
 
@@ -41,31 +45,6 @@
     enable = true;
     userName = "geodic";
     userEmail = "geodic.github@proton.me";
-  };
-
-  programs.zsh = {
-    enable = true;
-    antidote = {
-      enable = true;
-      plugins = [
-        "Aloxaf/fzf-tab"
-        "zsh-users/zsh-autosuggestions"
-        "zdharma-continuum/fast-syntax-highlighting"
-      ];
-    };
-    zprof.enable = true;
-  };
-  
-  programs.starship = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-  
-  programs.fzf.enable = true;
-  
-  programs.eza = {
-    enable = true;
-    icons = "auto";
   };
 
   # This value determines the home Manager release that your
