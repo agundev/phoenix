@@ -10,6 +10,7 @@
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
     (inputs.self + /users/advaith)
+    (inputs.self + /modules/system/nix-ld.nix)
     (inputs.self + /modules/system/desktop/gnome.nix)
     (inputs.self + /modules/system/locale/eastern.nix)
   ];

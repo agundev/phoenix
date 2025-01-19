@@ -11,7 +11,6 @@
         "zdharma-continuum/fast-syntax-highlighting"
       ];
     };
-    zprof.enable = true;
   };
   
   programs.starship = {
