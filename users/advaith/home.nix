@@ -40,7 +40,13 @@
     ethtool
     pciutils
     usbutils
+    
+    # fonts
+    nerd-fonts.fira-code
   ];
+  
+  # fonts
+  font.fontconfig.enable = true;
 
   # shell
   programs.git = {
