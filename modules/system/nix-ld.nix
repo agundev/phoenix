@@ -24,5 +24,5 @@
       util-linux
       zlib
       zstd
-  ]
+  ];
 }
