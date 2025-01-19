@@ -46,7 +46,7 @@
   ];
   
   # fonts
-  font.fontconfig.enable = true;
+  fonts.fontconfig.enable = true;
 
   # shell
   programs.git = {
