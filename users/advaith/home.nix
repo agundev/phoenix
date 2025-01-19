@@ -33,6 +33,9 @@
     gawk
     zstd
     gnupg
+    
+    # gnome
+    gnome-tweaks
 
     # system tools
     sysstat
