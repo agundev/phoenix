@@ -11,6 +11,7 @@
   home.packages = with pkgs; [
     fastfetch
     brave
+    micro
     
     # archives
     zip
