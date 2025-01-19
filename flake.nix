@@ -7,7 +7,7 @@
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {    
-    nixosConfigurations.advaiths-linux = pkgs.lib.nixosSystem {
+    nixosConfigurations.advaiths-linux = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         # Import the previous configuration.nix we used,
