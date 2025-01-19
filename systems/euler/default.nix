@@ -12,6 +12,7 @@
     (inputs.self + /modules/system/boot/plymouth.nix)
     (inputs.self + /modules/system/nix-ld.nix)
     (inputs.self + /modules/system/desktop/gnome.nix)
+    (inputs.self + /modules/system/networking/firewall.nix)
     (inputs.self + /modules/system/locale/eastern.nix)
   ];
 
