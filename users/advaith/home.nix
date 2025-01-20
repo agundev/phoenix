@@ -38,6 +38,9 @@
     gnome-tweaks
     valent
 
+    # apps
+    goldwarden
+
     # system tools
     sysstat
     lm_sensors
