@@ -14,6 +14,7 @@
     (inputs.self + /modules/system/nixos/permissions.nix)
     (inputs.self + /modules/system/desktop/gnome.nix)
     (inputs.self + /modules/system/desktop/flatpak.nix)
+    (inputs.self + /modules/system/desktop/goldwarden.nix)
     (inputs.self + /modules/system/networking/firewall.nix)
     (inputs.self + /modules/system/locale/eastern.nix)
   ];
