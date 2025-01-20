@@ -16,6 +16,7 @@
     (inputs.self + /modules/system/desktop/flatpak.nix)
     (inputs.self + /modules/system/desktop/goldwarden.nix)
     (inputs.self + /modules/system/networking/firewall.nix)
+    (inputs.self + /modules/system/networking/tailscale.nix)
     (inputs.self + /modules/system/locale/eastern.nix)
   ];
 
