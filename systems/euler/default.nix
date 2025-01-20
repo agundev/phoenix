@@ -10,7 +10,8 @@
     inputs.home-manager.nixosModules.home-manager
     (inputs.self + /users/advaith)
     (inputs.self + /modules/system/boot/plymouth.nix)
-    (inputs.self + /modules/system/nix-ld.nix)
+    (inputs.self + /modules/system/nixos/nix-ld.nix)
+    (inputs.self + /modules/system/nixos/permissions.nix)
     (inputs.self + /modules/system/desktop/gnome.nix)
     (inputs.self + /modules/system/networking/firewall.nix)
     (inputs.self + /modules/system/locale/eastern.nix)

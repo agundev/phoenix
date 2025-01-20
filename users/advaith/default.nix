@@ -4,7 +4,7 @@
   users.users.advaith = {
     isNormalUser = true;
     description = "Advaith Gundu";
-    extraGroups = [ "networkmanager" "wheel" "dialout"];
+    extraGroups = [ "networkmanager" "wheel" "dialout" "nixos"];
     shell = pkgs.zsh;
   };
   
