@@ -48,6 +48,9 @@
     
     # fonts
     nerd-fonts.fira-code
+
+    # coding
+    nixd
   ];
   
   # fonts
