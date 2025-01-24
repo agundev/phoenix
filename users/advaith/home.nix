@@ -12,6 +12,7 @@
     fastfetch
     brave
     micro
+    nixfmt-rfc-style
     
     # archives
     zip
