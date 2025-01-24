@@ -18,6 +18,7 @@
     (inputs.self + /modules/system/desktop/gnome.nix)
     (inputs.self + /modules/system/desktop/flatpak.nix)
     (inputs.self + /modules/system/desktop/1password.nix)
+    (inputs.self + /modules/system/desktop/v4l2.nix)
     (inputs.self + /modules/system/networking/firewall.nix)
     (inputs.self + /modules/system/networking/tailscale.nix)
     (inputs.self + /modules/system/locale/eastern.nix)
