@@ -7,6 +7,7 @@
       enable = true;
       plugins = [
         "Aloxaf/fzf-tab"
+        "jeffreytse/zsh-vi-mode"
         "zsh-users/zsh-autosuggestions"
         "zdharma-continuum/fast-syntax-highlighting"
       ];
