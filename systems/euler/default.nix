@@ -4,9 +4,12 @@
 
 { config, pkgs, inputs, ... }:
 {
-  imports =
-  [
+  imports = [
     ./hardware-configuration.nix
+    inputs.nixos-hardware.nixosModules.common-pc-laptop
+    inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
+    inputs.nixos-hardware.nixosModules.common-gpu-intel-tiger-lake
+    inputs.nixos-hardware.nixosModules.common-cpu-intel-cpu-only
     inputs.home-manager.nixosModules.home-manager
     (inputs.self + /users/advaith)
     (inputs.self + /modules/system/boot/plymouth.nix)

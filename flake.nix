@@ -8,6 +8,8 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-hardware.url = "github:geodic/nixos-hardware/fixes";
   };
 
   outputs = { self, nixpkgs, ... }@inputs:

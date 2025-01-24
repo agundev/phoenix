@@ -20,6 +20,22 @@
         "type": "github"
       }
     },
+    "nixos-hardware": {
+      "locked": {
+        "lastModified": 1737595414,
+        "narHash": "sha256-ixr6n9wtnvpzOEXOT4dCwcfkhutrP3Mq/6tMrYHMaMo=",
+        "owner": "geodic",
+        "repo": "nixos-hardware",
+        "rev": "8cb55647e1b1284ca6ccfa73c718bec8462963bd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "geodic",
+        "ref": "fixes",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1737062831,
@@ -39,6 +55,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs"
       }
     }
