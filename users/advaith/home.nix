@@ -1,4 +1,9 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   imports = [
@@ -13,7 +18,7 @@
     brave
     micro
     nixfmt-rfc-style
-    
+
     # archives
     zip
     xz
@@ -34,7 +39,7 @@
     gawk
     zstd
     gnupg
-    
+
     # gnome
     gnome-tweaks
     valent
@@ -45,14 +50,14 @@
     ethtool
     pciutils
     usbutils
-    
+
     # fonts
     nerd-fonts.fira-code
 
     # coding
     nixd
   ];
-  
+
   # fonts
   fonts.fontconfig.enable = true;
 

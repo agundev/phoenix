@@ -1,4 +1,9 @@
-{config, pkgs, inputs, ...}:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 {
   programs.zsh = {
     enable = true;
@@ -12,14 +17,14 @@
       ];
     };
   };
-  
+
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
   };
-  
+
   programs.fzf.enable = true;
-  
+
   programs.eza = {
     enable = true;
     icons = "auto";

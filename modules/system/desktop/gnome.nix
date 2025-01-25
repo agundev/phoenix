@@ -1,4 +1,9 @@
-{config, pkgs, inputs, ...}:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 {
   imports = [
     (inputs.self + /modules/system/networking/networkmanager.nix)
@@ -12,5 +17,3 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 }
-
-
