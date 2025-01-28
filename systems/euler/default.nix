@@ -6,6 +6,7 @@
   config,
   pkgs,
   inputs,
+  namespace,
   ...
 }:
 {
@@ -17,18 +18,6 @@
     inputs.nixos-hardware.nixosModules.common-cpu-intel-cpu-only
     inputs.home-manager.nixosModules.home-manager
     (inputs.self + /users/advaith)
-    (inputs.self + /modules/system/boot/plymouth.nix)
-    (inputs.self + /modules/system/disks/swap.nix)
-    (inputs.self + /modules/system/disks/zram.nix)
-    (inputs.self + /modules/system/nixos/nix-ld.nix)
-    (inputs.self + /modules/system/nixos/permissions.nix)
-    (inputs.self + /modules/system/desktop/gnome.nix)
-    (inputs.self + /modules/system/desktop/flatpak.nix)
-    (inputs.self + /modules/system/desktop/1password.nix)
-    (inputs.self + /modules/system/desktop/v4l2.nix)
-    (inputs.self + /modules/system/networking/firewall.nix)
-    (inputs.self + /modules/system/networking/tailscale.nix)
-    (inputs.self + /modules/system/locale/eastern.nix)
   ];
 
   # Bootloader.
@@ -41,6 +30,33 @@
 
   networking.hostName = "euler";
 
+  ${namespace} = {
+    boot = {
+      plymouth = true;
+    };
+    disks = {
+      swap = true;
+      zram = true;
+    };
+    nixos = {
+      nix-ld = true;
+      permissions = true;
+    };
+    desktop = {
+      gnome = true;
+      flatpak = true;
+      _1password = true;
+      v4l2 = true;
+    };
+    networking = {
+      firewall = true;
+      tailscale = true;
+    };
+    locale = {
+      eastern = true;
+    };
+  };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
@@ -48,5 +64,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
-
 }
