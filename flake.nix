@@ -29,6 +29,10 @@
       inherit inputs;
       src = ./.;
 
+      channels-config = {
+        allowUnfree = true;
+      }
+
       snowfall.namespace = "phoenix";
     };
 }
