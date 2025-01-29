@@ -29,7 +29,7 @@
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/05fd5bf1-6074-45ce-a13c-523b4552ec75";
-    fsType = "ext4";
+    fsType = "btrfs";
   };
 
   fileSystems."/boot" = {
