@@ -3,11 +3,11 @@ mkcd() {
 }
 
 codenv() {
-    local path=$(realpath "$1")
-    if nix develop "$path" -c true; then
-        nix develop "$path" -c code "$path"
+    local dir=$(realpath "$1")
+    if nix develop "$dir" -c true; then
+        nix develop "$dir" -c code "$dir"
     else
-        echo "Warning: Failed to initialize developer environment for '$path'"
-        code "$path"
+        echo "Warning: Failed to initialize developer environment for '$dir'"
+        code "$dir"
     fi
 }
