@@ -7,9 +7,6 @@
 }:
 
 {
-  home.username = "advaith";
-  home.homeDirectory = "/home/advaith";
-
   ${namespace} = {
     shell = {
       zsh = true;
