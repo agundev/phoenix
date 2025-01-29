@@ -10,6 +10,7 @@
   phoenix = {
     desktop = {
       fontconfig = true;
+      gnome = true;
     };
     programs = {
       ghostty = true;
