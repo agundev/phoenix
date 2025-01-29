@@ -1,18 +1,21 @@
-{ config, lib, namespace, ... }:
-
-with lib;
+{
+  config,
+  lib,
+  namespace,
+  ...
+}:
 
 let
   cfg = config.${namespace}.desktop.flatpak;
 in
 {
-  options.${namespace}.desktop.flatpak = mkOption {
-    type = types.bool;
+  options.${namespace}.desktop.flatpak = lib.mkOption {
+    type = lib.types.bool;
     default = false;
     description = "Enable Flatpak configuration.";
   };
 
-  config = mkIf cfg {
+  config = lib.mkIf cfg {
     services.flatpak.enable = true;
   };
 }

@@ -1,18 +1,21 @@
-{ config, lib, namespace, ... }:
-
-with lib;
+{
+  config,
+  lib,
+  namespace,
+  ...
+}:
 
 let
   cfg = config.${namespace}.printing.cups;
 in
 {
-  options.${namespace}.printing.cups = mkOption {
-    type = types.bool;
+  options.${namespace}.printing.cups = lib.mkOption {
+    type = lib.types.bool;
     default = false;
     description = "Enable CUPS printing service.";
   };
 
-  config = mkIf cfg {
+  config = lib.mkIf cfg {
     services.printing.enable = true;
   };
 }

@@ -1,18 +1,22 @@
-{ config, lib, namespace, ... }:
-
-with lib;
+{
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
+}:
 
 let
   cfg = config.${namespace}.programs.nix-ld;
 in
 {
-  options.${namespace}.programs.nix-ld = mkOption {
-    type = types.bool;
+  options.${namespace}.programs.nix-ld = lib.mkOption {
+    type = lib.types.bool;
     default = false;
     description = "Enable nix-ld program.";
   };
 
-  config = mkIf cfg {
+  config = lib.mkIf cfg {
     programs.nix-ld.enable = true;
     programs.nix-ld.libraries = with pkgs; [
       acl

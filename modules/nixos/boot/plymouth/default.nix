@@ -1,18 +1,21 @@
-{ config, lib, namespace, ... }:
-
-with lib;
+{
+  config,
+  lib,
+  namespace,
+  ...
+}:
 
 let
   cfg = config.${namespace}.boot.plymouth;
 in
 {
-  options.${namespace}.boot.plymouth = mkOption {
-    type = types.bool;
+  options.${namespace}.boot.plymouth = lib.mkOption {
+    type = lib.types.bool;
     default = false;
     description = "Enable Plymouth boot splash configuration.";
   };
 
-  config = mkIf cfg {
+  config = lib.mkIf cfg {
     boot.plymouth = {
       enable = true;
       theme = "bgrt";

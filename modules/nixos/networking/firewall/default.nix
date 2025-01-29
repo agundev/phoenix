@@ -1,18 +1,21 @@
-{ config, lib, namespace, ... }:
-
-with lib;
+{
+  config,
+  lib,
+  namespace,
+  ...
+}:
 
 let
   cfg = config.${namespace}.networking.firewall;
 in
 {
-  options.${namespace}.networking.firewall = mkOption {
-    type = types.bool;
+  options.${namespace}.networking.firewall = lib.mkOption {
+    type = lib.types.bool;
     default = false;
     description = "Enable Firewall configuration.";
   };
 
-  config = mkIf cfg {
+  config = lib.mkIf cfg {
     networking.firewall.enable = false;
   };
 }

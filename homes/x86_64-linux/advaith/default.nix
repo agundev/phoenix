@@ -1,17 +1,20 @@
 {
   config,
+  lib,
   pkgs,
-  inputs,
+  namespace,
   ...
 }:
 
 {
-  imports = [
-    (inputs.self + /modules/home/shell/zsh.nix)
-  ];
-
   home.username = "advaith";
   home.homeDirectory = "/home/advaith";
+
+  ${namespace} = {
+    shell = {
+      zsh = true;
+    };
+  };
 
   home.packages = with pkgs; [
     fastfetch

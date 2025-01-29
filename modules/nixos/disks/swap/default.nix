@@ -1,18 +1,21 @@
-{ config, lib, namespace, ... }:
-
-with lib;
+{
+  config,
+  lib,
+  namespace,
+  ...
+}:
 
 let
   cfg = config.${namespace}.disks.swap;
 in
 {
-  options.${namespace}.disks.swap = mkOption {
-    type = types.bool;
+  options.${namespace}.disks.swap = lib.mkOption {
+    type = lib.types.bool;
     default = false;
     description = "Enable swap device configuration.";
   };
 
-  config = mkIf cfg {
+  config = lib.mkIf cfg {
     swapDevices = [
       {
         device = "/var/lib/swapfile";

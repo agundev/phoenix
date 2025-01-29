@@ -1,18 +1,21 @@
-{ config, lib, namespace, ... }:
-
-with lib;
+{
+  config,
+  lib,
+  namespace,
+  ...
+}:
 
 let
   cfg = config.${namespace}.system.permissions;
 in
 {
-  options.${namespace}.system.permissions = mkOption {
-    type = types.bool;
+  options.${namespace}.system.permissions = lib.mkOption {
+    type = lib.types.bool;
     default = false;
     description = "Enable custom permissions configuration.";
   };
 
-  config = mkIf cfg {
+  config = lib.mkIf cfg {
     users.groups.nixos = { };
     systemd.tmpfiles.settings."99-nixos" = {
       "/etc/nixos".Z = {

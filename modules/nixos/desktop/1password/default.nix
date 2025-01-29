@@ -1,18 +1,21 @@
-{ config, lib, namespace, ... }:
-
-with lib;
+{
+  config,
+  lib,
+  namespace,
+  ...
+}:
 
 let
   cfg = config.${namespace}.desktop._1password;
 in
 {
-  options.${namespace}.desktop._1password = mkOption {
-    type = types.bool;
+  options.${namespace}.desktop._1password = lib.mkOption {
+    type = lib.types.bool;
     default = false;
     description = "Enable 1Password configuration.";
   };
 
-  config = mkIf cfg {
+  config = lib.mkIf cfg {
     programs._1password-gui.enable = true;
     programs._1password.enable = true;
 

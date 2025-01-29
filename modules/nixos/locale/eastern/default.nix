@@ -1,18 +1,21 @@
-{ config, lib, namespace, ... }:
-
-with lib;
+{
+  config,
+  lib,
+  namespace,
+  ...
+}:
 
 let
   cfg = config.${namespace}.locale.eastern;
 in
 {
-  options.${namespace}.locale.eastern = mkOption {
-    type = types.bool;
+  options.${namespace}.locale.eastern = lib.mkOption {
+    type = lib.types.bool;
     default = false;
     description = "Enable Eastern locale configuration.";
   };
 
-  config = mkIf cfg {
+  config = lib.mkIf cfg {
     # Set your time zone.
     time.timeZone = "America/New_York";
 

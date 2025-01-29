@@ -28,5 +28,7 @@
     snowfall-lib.mkFlake {
       inherit inputs;
       src = ./.;
+
+      snowfall.namespace = "phoenix";
     };
 }

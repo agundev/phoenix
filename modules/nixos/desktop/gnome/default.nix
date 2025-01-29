@@ -1,18 +1,22 @@
-{ config, lib, namespace, inputs, ... }:
-
-with lib;
+{
+  config,
+  lib,
+  namespace,
+  inputs,
+  ...
+}:
 
 let
   cfg = config.${namespace}.desktop.gnome;
 in
 {
-  options.${namespace}.desktop.gnome = mkOption {
-    type = types.bool;
+  options.${namespace}.desktop.gnome = lib.mkOption {
+    type = lib.types.bool;
     default = false;
     description = "Enable GNOME Desktop Environment.";
   };
 
-  config = mkIf cfg {
+  config = lib.mkIf cfg {
     ${namespace}.networking.networkmanager = true;
     ${namespace}.audio.pipewire = true;
     ${namespace}.desktop.cups = true;

@@ -1,18 +1,22 @@
-{ config, lib, namespace, ... }:
-
-with lib;
+{
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
+}:
 
 let
   cfg = config.${namespace}.desktop.v4l2;
 in
 {
-  options.${namespace}.desktop.v4l2 = mkOption {
-    type = types.bool;
+  options.${namespace}.desktop.v4l2 = lib.mkOption {
+    type = lib.types.bool;
     default = false;
     description = "Enable V4L2 configuration.";
   };
 
-  config = mkIf cfg {
+  config = lib.mkIf cfg {
     boot.kernelModules = [ "v4l2loopback" ];
     boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
     boot.extraModprobeConfig = ''
