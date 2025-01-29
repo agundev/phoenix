@@ -7,7 +7,7 @@
 }:
 
 {
-  ${namespace} = {
+  phoenix = {
     shell = {
       zsh = true;
     };

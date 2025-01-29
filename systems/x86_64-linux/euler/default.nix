@@ -11,7 +11,7 @@
 }:
 {
   imports = [
-    ./hardware-configuration.nix
+    ./hardware.nix
     inputs.nixos-hardware.nixosModules.common-pc-laptop
     inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
     inputs.nixos-hardware.nixosModules.common-gpu-intel-tiger-lake
@@ -28,7 +28,7 @@
 
   networking.hostName = "euler";
 
-  ${namespace} = {
+  phoenix = {
     boot = {
       plymouth = true;
     };
