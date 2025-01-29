@@ -7,7 +7,7 @@
 }:
 
 let
-  cfg = config.${namespace}.programs.nix-ld;
+  cfg = config.${namespace}.nixos.nix-ld;
 in
 {
   options.${namespace}.programs.nix-ld = lib.mkOption {

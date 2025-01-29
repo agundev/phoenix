@@ -6,7 +6,7 @@
 }:
 
 let
-  cfg = config.${namespace}.system.permissions;
+  cfg = config.${namespace}.nixos.permissions;
 in
 {
   options.${namespace}.system.permissions = lib.mkOption {
