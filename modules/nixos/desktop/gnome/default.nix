@@ -17,9 +17,12 @@ in
   };
 
   config = lib.mkIf cfg {
-    ${namespace}.networking.networkmanager = true;
-    ${namespace}.audio.pipewire = true;
-    ${namespace}.desktop.cups = true;
+    ${namespace} = {
+      networking.networkmanager = true;
+      audio.pipewire = true;
+      desktop.cups = true;
+    };
+
 
     # Enable the X11 windowing system.
     services.xserver.enable = true;
