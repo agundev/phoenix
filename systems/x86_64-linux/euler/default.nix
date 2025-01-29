@@ -43,8 +43,10 @@
     desktop = {
       gnome = true;
       flatpak = true;
-      _1password = true;
       v4l2 = true;
+    };
+    programs = {
+      _1password = true;
     };
     networking = {
       firewall = true;

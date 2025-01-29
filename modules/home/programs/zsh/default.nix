@@ -6,10 +6,10 @@
 }:
 
 let
-  cfg = config.${namespace}.shell.zsh;
+  cfg = config.${namespace}.programs.zsh;
 in
 {
-  options.${namespace}.shell.zsh = lib.mkOption {
+  options.${namespace}.programs.zsh = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable ZSH shell configuration.";
@@ -27,6 +27,10 @@ in
           "zdharma-continuum/fast-syntax-highlighting"
         ];
       };
+      initExtra = builtins.concatStringsSep "\n" [
+        (builtins.readFile ./environment.zsh)
+        (builtins.readFile ./functions.zsh)
+      ];
     };
 
     programs.starship = {

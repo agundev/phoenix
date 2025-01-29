@@ -25,6 +25,7 @@ in
         "wheel"
         "dialout"
         "nixos"
+        "adbusers"
       ];
       shell = pkgs.zsh;
     };

@@ -6,10 +6,10 @@
 }:
 
 let
-  cfg = config.${namespace}.desktop._1password;
+  cfg = config.${namespace}.programs._1password;
 in
 {
-  options.${namespace}.desktop._1password = lib.mkOption {
+  options.${namespace}.programs._1password = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable 1Password configuration.";
