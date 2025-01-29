@@ -6,10 +6,10 @@
 }:
 
 let
-  cfg = config.${namespace}.printing.cups;
+  cfg = config.${namespace}.desktop.cups;
 in
 {
-  options.${namespace}.printing.cups = lib.mkOption {
+  options.${namespace}.desktop.cups = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable CUPS printing service.";
