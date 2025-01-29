@@ -10,7 +10,7 @@ let
   cfg = config.${namespace}.nixos.nix-ld;
 in
 {
-  options.${namespace}.programs.nix-ld = lib.mkOption {
+  options.${namespace}.nixos.nix-ld = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable nix-ld program.";

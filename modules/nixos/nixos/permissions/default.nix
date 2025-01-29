@@ -9,7 +9,7 @@ let
   cfg = config.${namespace}.nixos.permissions;
 in
 {
-  options.${namespace}.system.permissions = lib.mkOption {
+  options.${namespace}.nixos.permissions = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable custom permissions configuration.";
