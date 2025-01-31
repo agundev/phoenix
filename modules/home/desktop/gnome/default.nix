@@ -32,6 +32,7 @@ in
         { package = pkgs.gnomeExtensions.removable-drive-menu; }
         { package = pkgs.gnomeExtensions.tiling-shell; }
         { package = pkgs.gnomeExtensions.tailscale-qs; }
+        { package = pkgs.gnomeExtensions.rounded-window-corners-reborn; }
       ];
     };
   };
