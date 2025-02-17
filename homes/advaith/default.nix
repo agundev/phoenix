@@ -25,8 +25,6 @@
     brave
     micro
     nixfmt-rfc-style
-    bitwarden-desktop
-    bitwarden-cli
 
     # archives
     zip
