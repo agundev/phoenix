@@ -1,15 +1,15 @@
 {
   config,
   lib,
-  namespace,
+  
   ...
 }:
 
 let
-  cfg = config.${namespace}.programs.adb;
+  cfg = config.phoenix.programs.adb;
 in
 {
-  options.${namespace}.programs.adb = lib.mkOption {
+  options.phoenix.programs.adb = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable Android Debug Bridge (ADB) configuration.";

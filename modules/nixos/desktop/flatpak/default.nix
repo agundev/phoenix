@@ -1,15 +1,15 @@
 {
   config,
   lib,
-  namespace,
+  
   ...
 }:
 
 let
-  cfg = config.${namespace}.desktop.flatpak;
+  cfg = config.phoenix.desktop.flatpak;
 in
 {
-  options.${namespace}.desktop.flatpak = lib.mkOption {
+  options.phoenix.desktop.flatpak = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable Flatpak configuration.";

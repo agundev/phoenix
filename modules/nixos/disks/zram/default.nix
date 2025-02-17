@@ -1,15 +1,15 @@
 {
   config,
   lib,
-  namespace,
+  
   ...
 }:
 
 let
-  cfg = config.${namespace}.disks.zram;
+  cfg = config.phoenix.disks.zram;
 in
 {
-  options.${namespace}.disks.zram = lib.mkOption {
+  options.phoenix.disks.zram = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable ZRAM swap configuration.";

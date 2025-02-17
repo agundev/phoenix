@@ -1,15 +1,15 @@
 {
   config,
   lib,
-  namespace,
+  
   ...
 }:
 
 let
-  cfg = config.${namespace}.networking.networkmanager;
+  cfg = config.phoenix.networking.networkmanager;
 in
 {
-  options.${namespace}.networking.networkmanager = lib.mkOption {
+  options.phoenix.networking.networkmanager = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable NetworkManager service.";

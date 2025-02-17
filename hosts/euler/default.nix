@@ -4,9 +4,7 @@
 
 {
   config,
-  pkgs,
-  inputs,
-  namespace,
+  pkgs,  inputs,
   ...
 }:
 {

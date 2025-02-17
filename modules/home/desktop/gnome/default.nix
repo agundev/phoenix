@@ -1,16 +1,15 @@
 {
   config,
   lib,
-  pkgs,
-  namespace,
+  pkgs,  
   ...
 }:
 
 let
-  cfg = config.${namespace}.desktop.gnome;
+  cfg = config.phoenix.desktop.gnome;
 in
 {
-  options.${namespace}.desktop.gnome = lib.mkOption {
+  options.phoenix.desktop.gnome = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable Gnome configuration.";

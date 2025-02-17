@@ -1,15 +1,15 @@
 {
   config,
   lib,
-  namespace,
+  
   ...
 }:
 
 let
-  cfg = config.${namespace}.programs.zsh;
+  cfg = config.phoenix.programs.zsh;
 in
 {
-  options.${namespace}.programs.zsh = lib.mkOption {
+  options.phoenix.programs.zsh = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable ZSH shell configuration.";
@@ -30,6 +30,7 @@ in
       initExtra = builtins.concatStringsSep "\n" [
         (builtins.readFile ./environment.zsh)
         (builtins.readFile ./functions.zsh)
+        (builtins.concatStringsSep "\n" (map builtins.readFile (builtins.filter (name: lib.hasSuffix ".zsh" name) (lib.filesystem.listFilesRecursive ./configs))))
       ];
     };
 

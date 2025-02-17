@@ -1,23 +1,23 @@
 {
   config,
   lib,
-  namespace,
+  
   inputs,
   ...
 }:
 
 let
-  cfg = config.${namespace}.desktop.gnome;
+  cfg = config.phoenix.desktop.gnome;
 in
 {
-  options.${namespace}.desktop.gnome = lib.mkOption {
+  options.phoenix.desktop.gnome = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable GNOME Desktop Environment.";
   };
 
   config = lib.mkIf cfg {
-    ${namespace} = {
+    phoenix = {
       networking.networkmanager = true;
       audio.pipewire = true;
       desktop.cups = true;

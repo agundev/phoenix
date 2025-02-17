@@ -1,15 +1,15 @@
 {
   config,
   lib,
-  namespace,
+  
   ...
 }:
 
 let
-  cfg = config.${namespace}.programs._1password;
+  cfg = config.phoenix.programs._1password;
 in
 {
-  options.${namespace}.programs._1password = lib.mkOption {
+  options.phoenix.programs._1password = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable 1Password configuration.";

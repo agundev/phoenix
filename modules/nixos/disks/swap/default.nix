@@ -1,15 +1,15 @@
 {
   config,
   lib,
-  namespace,
+  
   ...
 }:
 
 let
-  cfg = config.${namespace}.disks.swap;
+  cfg = config.phoenix.disks.swap;
 in
 {
-  options.${namespace}.disks.swap = lib.mkOption {
+  options.phoenix.disks.swap = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable swap device configuration.";

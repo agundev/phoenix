@@ -1,16 +1,15 @@
 {
   config,
   lib,
-  pkgs,
-  namespace,
+  pkgs,  
   ...
 }:
 
 let
-  cfg = config.${namespace}.nixos.nix-ld;
+  cfg = config.phoenix.nixos.nix-ld;
 in
 {
-  options.${namespace}.nixos.nix-ld = lib.mkOption {
+  options.phoenix.nixos.nix-ld = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable nix-ld program.";

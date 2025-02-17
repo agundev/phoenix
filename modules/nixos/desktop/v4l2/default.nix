@@ -1,16 +1,15 @@
 {
   config,
   lib,
-  pkgs,
-  namespace,
+  pkgs,  
   ...
 }:
 
 let
-  cfg = config.${namespace}.desktop.v4l2;
+  cfg = config.phoenix.desktop.v4l2;
 in
 {
-  options.${namespace}.desktop.v4l2 = lib.mkOption {
+  options.phoenix.desktop.v4l2 = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable V4L2 configuration.";

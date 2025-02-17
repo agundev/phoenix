@@ -1,15 +1,15 @@
 {
   config,
   lib,
-  namespace,
+  
   ...
 }:
 
 let
-  cfg = config.${namespace}.desktop.fontconfig;
+  cfg = config.phoenix.desktop.fontconfig;
 in
 {
-  options.${namespace}.desktop.fontconfig = lib.mkOption {
+  options.phoenix.desktop.fontconfig = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable Fontconfig.";

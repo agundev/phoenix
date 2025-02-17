@@ -1,15 +1,15 @@
 {
   config,
   lib,
-  namespace,
+  
   ...
 }:
 
 let
-  cfg = config.${namespace}.locale.eastern;
+  cfg = config.phoenix.locale.eastern;
 in
 {
-  options.${namespace}.locale.eastern = lib.mkOption {
+  options.phoenix.locale.eastern = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable Eastern locale configuration.";

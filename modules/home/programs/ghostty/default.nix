@@ -1,15 +1,15 @@
 {
   config,
   lib,
-  namespace,
+  
   ...
 }:
 
 let
-  cfg = config.${namespace}.programs.ghostty;
+  cfg = config.phoenix.programs.ghostty;
 in
 {
-  options.${namespace}.programs.ghostty = lib.mkOption {
+  options.phoenix.programs.ghostty = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable Ghostty terminal configuration.";

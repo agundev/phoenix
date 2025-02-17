@@ -1,15 +1,15 @@
 {
   config,
   lib,
-  namespace,
+  
   ...
 }:
 
 let
-  cfg = config.${namespace}.boot.plymouth;
+  cfg = config.phoenix.boot.plymouth;
 in
 {
-  options.${namespace}.boot.plymouth = lib.mkOption {
+  options.phoenix.boot.plymouth = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable Plymouth boot splash configuration.";

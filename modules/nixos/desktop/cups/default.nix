@@ -1,15 +1,15 @@
 {
   config,
   lib,
-  namespace,
+  
   ...
 }:
 
 let
-  cfg = config.${namespace}.desktop.cups;
+  cfg = config.phoenix.desktop.cups;
 in
 {
-  options.${namespace}.desktop.cups = lib.mkOption {
+  options.phoenix.desktop.cups = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable CUPS printing service.";

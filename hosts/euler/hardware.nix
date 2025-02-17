@@ -4,8 +4,7 @@
 {
   config,
   lib,
-  pkgs,
-  modulesPath,
+  pkgs,  modulesPath,
   ...
 }:
 

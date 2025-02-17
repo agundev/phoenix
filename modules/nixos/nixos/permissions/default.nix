@@ -1,15 +1,15 @@
 {
   config,
   lib,
-  namespace,
+  
   ...
 }:
 
 let
-  cfg = config.${namespace}.nixos.permissions;
+  cfg = config.phoenix.nixos.permissions;
 in
 {
-  options.${namespace}.nixos.permissions = lib.mkOption {
+  options.phoenix.nixos.permissions = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable custom permissions configuration.";

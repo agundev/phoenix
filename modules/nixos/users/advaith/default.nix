@@ -1,16 +1,15 @@
 {
   config,
   lib,
-  pkgs,
-  namespace,
+  pkgs,  
   ...
 }:
 
 let
-  cfg = config.${namespace}.users.advaith;
+  cfg = config.phoenix.users.advaith;
 in
 {
-  options.${namespace}.users.advaith = lib.mkOption {
+  options.phoenix.users.advaith = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable Advaith user account.";
@@ -28,6 +27,10 @@ in
         "adbusers"
       ];
       shell = pkgs.zsh;
+    };
+
+    home-manager.users.advaith = {
+      imports = lib.homeManagerModules "advaith";
     };
 
     programs.zsh.enable = true;

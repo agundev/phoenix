@@ -1,15 +1,15 @@
 {
   config,
   lib,
-  namespace,
+  
   ...
 }:
 
 let
-  cfg = config.${namespace}.networking.tailscale;
+  cfg = config.phoenix.networking.tailscale;
 in
 {
-  options.${namespace}.networking.tailscale = lib.mkOption {
+  options.phoenix.networking.tailscale = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable Tailscale service.";

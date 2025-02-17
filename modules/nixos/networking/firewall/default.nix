@@ -1,15 +1,15 @@
 {
   config,
   lib,
-  namespace,
+  
   ...
 }:
 
 let
-  cfg = config.${namespace}.networking.firewall;
+  cfg = config.phoenix.networking.firewall;
 in
 {
-  options.${namespace}.networking.firewall = lib.mkOption {
+  options.phoenix.networking.firewall = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable Firewall configuration.";

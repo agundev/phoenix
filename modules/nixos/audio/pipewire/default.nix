@@ -1,15 +1,15 @@
 {
   config,
   lib,
-  namespace,
+  
   ...
 }:
 
 let
-  cfg = config.${namespace}.audio.pipewire;
+  cfg = config.phoenix.audio.pipewire;
 in
 {
-  options.${namespace}.audio.pipewire = lib.mkOption {
+  options.phoenix.audio.pipewire = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable PipeWire audio configuration.";
