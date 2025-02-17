@@ -6,6 +6,9 @@ alias upd="nix flake update --flake /etc/nixos"
 alias uhs="upd && hs"
 alias urs="upd && sudo nixos-rebuild switch && hs"
 alias urso="upd && sudo nixos-rebuild switch"
+alias cc="nix-collect-garbage"
+alias cpg="cc -d"
+alias cpga="sudo cpg && cpg"
 
 mkcd() {
     mkdir -p "$1" && cd "$1"

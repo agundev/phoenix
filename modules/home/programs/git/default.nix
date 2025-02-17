@@ -19,7 +19,7 @@ in
       enable = true;
       userName = "geodic";
       userEmail = "geodic.github@proton.me";
-      signing.format = "ssh";
+      signing.format = lib.mkForce "ssh";
     };
   };
 }
