@@ -8,7 +8,6 @@
 {
   phoenix = {
     desktop = {
-      fontconfig = true;
       gnome = true;
     };
     programs = {

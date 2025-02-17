@@ -17,7 +17,7 @@ in
   config = lib.mkIf cfg {
     boot.plymouth = {
       enable = true;
-      theme = "bgrt";
+      theme = lib.mkDefault "bgrt";
     };
 
     boot.initrd.verbose = false;

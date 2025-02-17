@@ -1,13 +1,23 @@
 {
   config,
   lib,
-  inputs,
+  inputs,  
   ...
 }:
 
+let
+  cfg = config.phoenix.nixos.nixos-cli;
+in
 {
-  imports = [ inputs.nixos-cli.nixosModules.nixos-cli ];
-  services.nixos-cli = {
-    enable = true;
+  options.phoenix.nixos.nixos-cli = lib.mkOption {
+    type = lib.types.bool;
+    default = true;
+    description = "Enable nixos-cli program.";
+  };
+
+  config = lib.mkIf cfg {
+    services.nixos-cli = {
+      enable = true;
+    };
   };
 }

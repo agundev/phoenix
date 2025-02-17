@@ -26,9 +26,11 @@ rec {
     nixos-hardware.url = "github:geodic/nixos-hardware/fixes";
 
     nixos-cli.url = "github:water-sucks/nixos";
+
+    catppuccin.url = "github:catppuccin/nix";
   };
 
-  outputs = inputs@{ flake-parts, home-manager, nixpkgs, nixpkgs-stable, ... }:
+  outputs = inputs@{ flake-parts, home-manager, nixpkgs, nixpkgs-stable, nixos-cli, catppuccin, ... }:
     let 
       mkLib = nixpkgs: nixpkgs.lib.extend (final: prev: home-manager.lib);
       lib = mkLib nixpkgs;
@@ -50,6 +52,8 @@ rec {
             {
               nixpkgs.config.allowUnfree = true;
             }
+            nixos-cli.nixosModules.nixos-cli
+            catppuccin.nixosModules.catppuccin
             (builtins.filter (path: baseNameOf path == "default.nix") (pkgs.lib.filesystem.listFilesRecursive ./modules/nixos))
           ];
           specialArgs = {
@@ -73,13 +77,14 @@ rec {
           (username: _: inputs.home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
             modules = lib.flatten [ 
+              ./homes/${username}
               {
                 home.username = username;
                 home.homeDirectory = "/home/${username}";
                 home.stateVersion = "25.05";
                 programs.home-manager.enable = true;
               }
-              ./homes/${username}
+              catppuccin.homeManagerModules.catppuccin
               (builtins.filter (path: baseNameOf path == "default.nix") (lib.filesystem.listFilesRecursive ./modules/home))
             ];
             extraSpecialArgs = {

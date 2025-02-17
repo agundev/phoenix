@@ -16,6 +16,13 @@ in
   };
 
   config = with pkgs; lib.mkIf cfg {
+    phoenix = {
+      desktop = {
+        catppuccin.gtk = true;
+        fontconfig = true;
+      }
+    };
+
     programs.gnome-shell = {
       enable = true;
       extensions = builtins.map (pkg: { package = pkg; }) [
