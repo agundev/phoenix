@@ -29,6 +29,8 @@ in
       shell = pkgs.zsh;
     };
 
+    nix.settings.trusted-users = [ "advaith" ];
+
     programs.zsh.enable = true;
   };
 }

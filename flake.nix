@@ -1,6 +1,17 @@
 rec {
   description = "A NixOS configuration that rose from the dead.";
 
+    nixConfig = {
+      extra-substituters = [
+        "https://nix-community.cachix.org"
+        "https://watersucks.cachix.org"
+      ];
+      extra-trusted-public-keys = [
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "watersucks.cachix.org-1:6gadPC5R8iLWQ3EUtfu3GFrVY7X6I4Fwz/ihW25Jbv8="
+      ];
+    };
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
@@ -13,6 +24,8 @@ rec {
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     nixos-hardware.url = "github:geodic/nixos-hardware/fixes";
+
+    nixos-cli.url = "github:water-sucks/nixos";
   };
 
   outputs = inputs@{ flake-parts, home-manager, nixpkgs, nixpkgs-stable, ... }:

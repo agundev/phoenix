@@ -35,10 +35,6 @@
       swap = true;
       zram = true;
     };
-    nixos = {
-      nix-ld = true;
-      permissions = true;
-    };
     desktop = {
       gnome = true;
       flatpak = true;
