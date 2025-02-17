@@ -2,6 +2,10 @@ alias home-manager="home-manager --flake /etc/nixos"
 alias hs="home-manager switch"
 alias rs="sudo nixos-rebuild switch && hs"
 alias rso="sudo nixos-rebuild switch"
+alias upd="nix flake update --flake /etc/nixos"
+alias uhs="upd && hs"
+alias urs="upd && sudo nixos-rebuild switch && hs"
+alias urso="upd && sudo nixos-rebuild switch"
 
 mkcd() {
     mkdir -p "$1" && cd "$1"

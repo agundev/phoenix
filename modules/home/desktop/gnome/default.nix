@@ -33,6 +33,7 @@ in
           gnomeExtensions.tailscale-qs
           gnomeExtensions.rounded-window-corners-reborn
           gnomeExtensions.quick-settings-tweaker
+          gnomeExtensions.bluetooth-battery-meter
       ];
     };
   };
