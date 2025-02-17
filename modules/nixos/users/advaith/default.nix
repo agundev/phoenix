@@ -29,10 +29,6 @@ in
       shell = pkgs.zsh;
     };
 
-    home-manager.users.advaith = {
-      imports = lib.homeManagerModules "advaith";
-    };
-
     programs.zsh.enable = true;
   };
 }
