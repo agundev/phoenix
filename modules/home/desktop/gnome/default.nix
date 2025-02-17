@@ -34,6 +34,7 @@ in
           gnomeExtensions.rounded-window-corners-reborn
           gnomeExtensions.quick-settings-tweaker
           gnomeExtensions.bluetooth-battery-meter
+          gnomeExtensions.top-bar-organizer
       ];
     };
   };
