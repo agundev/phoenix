@@ -16,6 +16,7 @@
       git = true;
       vscode = true;
       zsh = true;
+      direnv = true;
     };
   };
 
