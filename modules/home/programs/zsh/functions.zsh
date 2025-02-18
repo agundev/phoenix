@@ -7,6 +7,7 @@ alias uhs="upd && hs"
 alias urso="upd && rso"
 alias urs="upd && rs"
 alias cc="nix-collect-garbage"
+alias cca="sudo cc && cc"
 alias cpg="cc -d"
 alias cpga="sudo cpg && cpg"
 

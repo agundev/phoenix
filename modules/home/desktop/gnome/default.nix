@@ -18,10 +18,21 @@ in
   config = with pkgs; lib.mkIf cfg {
     phoenix = {
       desktop = {
-        catppuccin.gtk = true;
         fontconfig = true;
-      }
+      };
     };
+
+    gtk = {
+      enable = true;
+      theme = {
+        name = "adw-gtk3";
+        package = pkgs.adw-gtk3;
+      };
+    };
+    home.packages = with pkgs; [
+      gnome-tweaks
+      valent
+    ];
 
     programs.gnome-shell = {
       enable = true;
@@ -42,6 +53,7 @@ in
           gnomeExtensions.quick-settings-tweaker
           gnomeExtensions.bluetooth-battery-meter
           gnomeExtensions.top-bar-organizer
+          gnomeExtensions.color-picker
       ];
     };
   };

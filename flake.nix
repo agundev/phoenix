@@ -26,14 +26,16 @@ rec {
     nixos-hardware.url = "github:geodic/nixos-hardware/fixes";
 
     nixos-cli.url = "github:water-sucks/nixos";
-
-    catppuccin.url = "github:catppuccin/nix";
   };
 
-  outputs = inputs@{ flake-parts, home-manager, nixpkgs, nixpkgs-stable, nixos-cli, catppuccin, ... }:
+  outputs = inputs@{ flake-parts, home-manager, nixpkgs, nixpkgs-stable, nixos-cli, ... }:
     let 
-      mkLib = nixpkgs: nixpkgs.lib.extend (final: prev: home-manager.lib);
+      mkLib = nixpkgs: nixpkgs.lib.extend (self: super: home-manager.lib);
       lib = mkLib nixpkgs;
+
+      overlays = builtins.map (overlayPath: import overlayPath)
+        (builtins.filter (path: baseNameOf path == "default.nix")
+          (nixpkgs.lib.filesystem.listFilesRecursive ./overlays));
     in flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [ inputs.home-manager.flakeModules.home-manager ];
       flake = {
@@ -51,9 +53,10 @@ rec {
             ./hosts/${hostname}
             {
               nixpkgs.config.allowUnfree = true;
+              nixpkgs.overlays = overlays;
             }
             nixos-cli.nixosModules.nixos-cli
-            catppuccin.nixosModules.catppuccin
+
             (builtins.filter (path: baseNameOf path == "default.nix") (pkgs.lib.filesystem.listFilesRecursive ./modules/nixos))
           ];
           specialArgs = {
@@ -71,6 +74,7 @@ rec {
         _module.args.pkgs = import nixpkgs {
           inherit system;
           config.allowUnfree = true;
+          overlays = overlays;
         };
 
         legacyPackages.homeConfigurations = builtins.mapAttrs
@@ -84,7 +88,6 @@ rec {
                 home.stateVersion = "25.05";
                 programs.home-manager.enable = true;
               }
-              catppuccin.homeManagerModules.catppuccin
               (builtins.filter (path: baseNameOf path == "default.nix") (lib.filesystem.listFilesRecursive ./modules/home))
             ];
             extraSpecialArgs = {

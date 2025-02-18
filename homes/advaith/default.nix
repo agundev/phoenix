@@ -46,10 +46,6 @@
     zstd
     gnupg
 
-    # gnome
-    gnome-tweaks
-    valent
-
     # system tools
     sysstat
     lm_sensors
