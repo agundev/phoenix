@@ -21,6 +21,7 @@ in
       settings = {
         # Font configuration
         font-family = "FiraCode Nerd Font Mono";
+        theme = "Adwaita Dark";
       };
     };
   };
