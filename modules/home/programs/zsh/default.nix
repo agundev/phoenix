@@ -29,7 +29,11 @@ in
       initExtra = builtins.concatStringsSep "\n" [
         (builtins.readFile ./environment.zsh)
         (builtins.readFile ./functions.zsh)
-        (builtins.concatStringsSep "\n" (map builtins.readFile (builtins.filter (name: lib.hasSuffix ".zsh" name) (lib.filesystem.listFilesRecursive ./configs))))
+        (builtins.concatStringsSep "\n" (
+          map builtins.readFile (
+            builtins.filter (name: lib.hasSuffix ".zsh" name) (lib.filesystem.listFilesRecursive ./configs)
+          )
+        ))
       ];
     };
 
