@@ -61,6 +61,7 @@ in
           gnomeExtensions.bluetooth-battery-meter
           gnomeExtensions.top-bar-organizer
           gnomeExtensions.color-picker
+          gnomeExtensions.search-light
         ];
       };
     };
