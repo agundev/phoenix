@@ -29,6 +29,9 @@ in
         package = pkgs.adw-gtk3;
       };
     };
+    xdg.configFile."gtk-4.0/gtk.css" = lib.mkForce { text=builtins.readFile ./gnome.css; };
+    xdg.configFile."gtk-4.0/settings.ini" = { text=lib.mkForce ""; };
+
     home.packages = with pkgs; [
       gnome-tweaks
       valent
