@@ -40,6 +40,8 @@ in
       util-linux
       zlib
       zstd
+      libGL
+      glib
     ];
   };
 }
