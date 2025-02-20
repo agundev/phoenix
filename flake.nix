@@ -5,10 +5,12 @@ rec {
     extra-substituters = [
       "https://nix-community.cachix.org"
       "https://watersucks.cachix.org"
+      "https://geodic.cachix.org"
     ];
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "watersucks.cachix.org-1:6gadPC5R8iLWQ3EUtfu3GFrVY7X6I4Fwz/ihW25Jbv8="
+      "geodic.cachix.org-1:/VAwo3zaKEPYHybnBhqWh1aMSNqw9F9mXbJB57WdzfM="
     ];
   };
 
