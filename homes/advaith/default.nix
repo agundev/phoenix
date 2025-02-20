@@ -15,16 +15,16 @@
       git = true;
       vscode = true;
       zsh = true;
-      vesktop = true;
       direnv = true;
     };
   };
 
   home.packages = with pkgs; [
+    # apps
     fastfetch
     brave
     micro
-    nixfmt-rfc-style
+    vesktop
 
     # archives
     zip
@@ -57,8 +57,10 @@
     # fonts
     nerd-fonts.fira-code
 
-    # coding
+    # nix
     nixd
+    nixfmt-rfc-style
+    cachix
   ];
 
   # This value determines the home Manager release that your
