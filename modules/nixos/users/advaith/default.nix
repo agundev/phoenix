@@ -32,5 +32,6 @@ in
     nix.settings.trusted-users = [ "advaith" ];
 
     programs.zsh.enable = true;
+    programs._1password-gui.polkitPolicyOwners = [ "advaith" ];
   };
 }

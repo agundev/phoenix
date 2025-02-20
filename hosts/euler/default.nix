@@ -31,6 +31,9 @@
     boot = {
       plymouth = true;
     };
+    hardware = {
+      fprint = true;
+    };
     disks = {
       swap = true;
       zram = true;

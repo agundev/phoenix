@@ -38,7 +38,17 @@ rec {
       ...
     }:
     let
-      mkLib = nixpkgs: nixpkgs.lib.extend (self: super: home-manager.lib);
+      mkLib =
+        nixpkgs:
+        nixpkgs.lib.extend (
+          self: super:
+          {
+            setNestedAttr =
+              attr: value: attrset:
+              builtins.mapAttrs (_: v: v // { ${attr} = value; }) attrset;
+          }
+          // home-manager.lib
+        );
       lib = mkLib nixpkgs;
 
       overlays = builtins.map (overlayPath: import overlayPath) (
