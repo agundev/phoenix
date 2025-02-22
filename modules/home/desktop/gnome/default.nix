@@ -59,6 +59,7 @@ in
           gnomeExtensions.rounded-window-corners-reborn
           gnomeExtensions.quick-settings-tweaker
           gnomeExtensions.bluetooth-battery-meter
+          gnomeExtensions.upower-battery
           gnomeExtensions.top-bar-organizer
           gnomeExtensions.color-picker
           gnomeExtensions.search-light
