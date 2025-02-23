@@ -19,6 +19,7 @@ in
     users.users.advaith = {
       isNormalUser = true;
       description = "Advaith Gundu";
+      group = "advaith";
       extraGroups = [
         "networkmanager"
         "wheel"
@@ -28,6 +29,7 @@ in
       ];
       shell = pkgs.zsh;
     };
+    users.groups.advaith = {};
 
     nix.settings.trusted-users = [ "advaith" ];
 

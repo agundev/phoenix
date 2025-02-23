@@ -54,6 +54,7 @@
       eastern = true;
     };
     users = {
+      mainUser = "advaith";
       advaith = true;
     };
   };

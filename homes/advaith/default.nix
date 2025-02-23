@@ -25,6 +25,7 @@
     brave
     micro
     vesktop
+    notion-app-enhanced
 
     # archives
     zip
