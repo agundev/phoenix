@@ -16,6 +16,7 @@
       vscode = true;
       zsh = true;
       direnv = true;
+      nixcord = true;
     };
   };
 
@@ -24,7 +25,6 @@
     fastfetch
     brave
     micro
-    vesktop
     notion-app-enhanced
 
     # archives

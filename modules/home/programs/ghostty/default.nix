@@ -19,9 +19,7 @@ in
       enable = true;
       enableZshIntegration = true;
       settings = {
-        # Font configuration
-        font-family = "FiraCode Nerd Font Mono";
-        theme = "Adwaita Dark";
+        font-family = lib.mkForce "FiraCode Nerd Font Mono";
       };
     };
   };

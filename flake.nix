@@ -28,6 +28,10 @@ rec {
     nixos-hardware.url = "github:geodic/nixos-hardware/fixes";
 
     nixos-cli.url = "github:water-sucks/nixos";
+
+    stylix.url = "github:danth/stylix";
+
+    nixcord.url = "github:kaylorben/nixcord";
   };
 
   outputs =
@@ -37,6 +41,8 @@ rec {
       nixpkgs,
       nixpkgs-stable,
       nixos-cli,
+      stylix,
+      nixcord,
       ...
     }:
     let
@@ -78,6 +84,7 @@ rec {
                 nixpkgs.overlays = overlays;
               }
               nixos-cli.nixosModules.nixos-cli
+              stylix.nixosModules.stylix
 
               (builtins.filter (path: baseNameOf path == "default.nix") (
                 pkgs.lib.filesystem.listFilesRecursive ./modules/nixos
@@ -115,6 +122,9 @@ rec {
                   home.stateVersion = "25.05";
                   programs.home-manager.enable = true;
                 }
+                stylix.homeManagerModules.stylix
+                nixcord.homeManagerModules.nixcord
+
                 (builtins.filter (path: baseNameOf path == "default.nix") (
                   lib.filesystem.listFilesRecursive ./modules/home
                 ))

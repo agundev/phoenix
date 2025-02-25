@@ -16,24 +16,11 @@ in
   };
 
   config =
-    with pkgs;
     lib.mkIf cfg {
       phoenix = {
         desktop = {
           fontconfig = true;
         };
-      };
-
-      gtk = {
-        enable = true;
-        theme = {
-          name = "adw-gtk3";
-          package = pkgs.adw-gtk3;
-        };
-      };
-      xdg.configFile."gtk-4.0/gtk.css" = lib.mkForce { text = builtins.readFile ./gnome.css; };
-      xdg.configFile."gtk-4.0/settings.ini" = {
-        text = lib.mkForce "";
       };
 
       home.packages = with pkgs; [
@@ -43,7 +30,7 @@ in
 
       programs.gnome-shell = {
         enable = true;
-        extensions = builtins.map (pkg: { package = pkg; }) [
+        extensions = with pkgs; builtins.map (pkg: { package = pkg; }) [
           gnomeExtensions.dash-to-dock
           gnomeExtensions.blur-my-shell
           gnomeExtensions.valent
