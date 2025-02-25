@@ -10,28 +10,6 @@ self: super: {
     };
   });
 
-  # libfprint-grosshack = super.fprintd.overrideAttrs (oldAttrs: rec {
-  #   version = "0.3.0";
-  #   src = super.fetchFromGitLab {
-  #     owner = "mishakmak";
-  #     repo = "pam-fprint-grosshack";
-  #     tag = "v${version}";
-  #     sha256 = "sha256-obczZbf/oH4xGaVvp3y3ZyDdYhZnxlCWvL0irgEYIi0=";
-  #   };
-  #   outputs = [ "out" ];
-
-  #   nativeBuildInputs =
-  #     with super;
-  #     oldAttrs.nativeBuildInputs
-  #     ++ [
-  #       cmake
-  #       libpam-wrapper
-  #     ];
-
-  #   patches = [ ];
-  #   postPatch = "";
-  # });
-
   libfprint-grosshack = super.stdenv.mkDerivation rec {
     pname = "libfprint-grosshack";
     version = "0.3.0";
