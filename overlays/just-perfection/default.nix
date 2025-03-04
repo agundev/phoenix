@@ -1,6 +1,6 @@
-self: super: {
-  gnomeExtensions = super.gnomeExtensions // {
-    just-perfection = super.gnomeExtensions.just-perfection.overrideAttrs (oldAttrs: {
+final: prev: {
+  gnomeExtensions = prev.gnomeExtensions // {
+    just-perfection = prev.gnomeExtensions.just-perfection.overrideAttrs (oldAttrs: {
       patches = [ ./fix-freeze.patch ];
     });
   };

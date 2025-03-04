@@ -49,7 +49,7 @@ rec {
       mkLib =
         nixpkgs:
         nixpkgs.lib.extend (
-          self: super:
+          final: prev:
           {
             setNestedAttr =
               attr: value: attrset:

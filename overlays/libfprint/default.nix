@@ -1,7 +1,7 @@
-self: super: {
-  libfprint = super.libfprint.overrideAttrs (oldAttrs: {
+final: prev: {
+  libfprint = prev.libfprint.overrideAttrs (oldAttrs: {
     version = "1.94.7-elanmoc2";
-    src = super.fetchFromGitLab {
+    src = prev.fetchFromGitLab {
       domain = "gitlab.freedesktop.org";
       owner = "depau";
       repo = "libfprint";
@@ -10,24 +10,24 @@ self: super: {
     };
   });
 
-  libfprint-grosshack = super.stdenv.mkDerivation rec {
+  libfprint-grosshack = prev.stdenv.mkDerivation rec {
     pname = "libfprint-grosshack";
     version = "0.3.0";
-    src = super.fetchFromGitLab {
+    src = prev.fetchFromGitLab {
       owner = "mishakmak";
       repo = "pam-fprint-grosshack";
       tag = "v${version}";
       sha256 = "sha256-obczZbf/oH4xGaVvp3y3ZyDdYhZnxlCWvL0irgEYIi0=";
     };
 
-    nativeBuildInputs = with super; [
+    nativeBuildInputs = with prev; [
       pkg-config
       meson
       ninja
       python3
       libpam-wrapper
     ];
-    buildInputs = with super; [
+    buildInputs = with prev; [
       fprintd
       libfprint
       glib
