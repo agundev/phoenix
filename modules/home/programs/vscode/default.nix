@@ -44,6 +44,7 @@ in
           # VEX
           "vexrobotics.vexcode.Project.Home" = "/home/advaith/Documents/vex-vscode-projects";
           "vexrobotics.vexcode.Cpp.Sdk.Home" = "/home/advaith/.config/Code/User/globalStorage/vexrobotics.vexcode/sdk/cpp";
+          "vexrobotics.vexcode.General.LogLevel" = 1;
 
           # Direnv
           "direnv.restart.automatic" = true;
