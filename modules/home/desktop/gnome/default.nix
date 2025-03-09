@@ -51,6 +51,7 @@ in
           gnomeExtensions.color-picker
           gnomeExtensions.search-light
           gnomeExtensions.lineup
+          gnomeExtensions.brightness-control-using-ddcutil
         ];
       };
     };

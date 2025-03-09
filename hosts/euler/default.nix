@@ -42,9 +42,7 @@
       gnome = true;
       flatpak = true;
       v4l2 = true;
-    };
-    programs = {
-      _1password = true;
+      ddcci = true;
     };
     networking = {
       firewall = true;
