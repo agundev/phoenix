@@ -21,17 +21,19 @@ in
       description = "Advaith Gundu";
       group = "advaith";
       extraGroups = [
-        "networkmanager"
         "wheel"
         "dialout"
-        "nixos"
-        "adbusers"
-      ];
+      ] ++ config.phoenix.users.extraGroups;
       shell = pkgs.zsh;
     };
     users.groups.advaith = {};
 
     nix.settings.trusted-users = [ "advaith" ];
+
+    phoenix.programs = {
+      _1password = true;
+      adb = true;
+    };
 
     programs.zsh.enable = true;
     programs._1password-gui.polkitPolicyOwners = [ "advaith" ];

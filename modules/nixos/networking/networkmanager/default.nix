@@ -16,5 +16,7 @@ in
 
   config = lib.mkIf cfg {
     networking.networkmanager.enable = true;
+
+    phoenix.users.extraGroups = [ "networkmanager" ];
   };
 }

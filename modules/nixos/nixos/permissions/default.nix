@@ -4,6 +4,7 @@ with lib;
 
 let
   cfg = config.phoenix.system.permissions;
+  mainUser = config.phoenix.users.mainUser;
 in
 {
   options.phoenix.system.permissions = mkOption {
@@ -21,5 +22,7 @@ in
         user = "root";
       };
     };
+
+    users.users.${mainUser}.extraGroups = [ "nixos" ];
   };
 }

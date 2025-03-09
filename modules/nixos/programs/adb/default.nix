@@ -16,5 +16,7 @@ in
 
   config = lib.mkIf cfg {
     programs.adb.enable = true;
+
+    phoenix.users.extraGroups = [ "adbusers" ];
   };
 }
