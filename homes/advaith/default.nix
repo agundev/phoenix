@@ -17,6 +17,7 @@
       zsh = true;
       direnv = true;
       nixcord = true;
+      _1password = true;
     };
   };
 
