@@ -25,6 +25,8 @@
     fastfetch
     brave
     micro
+    spotify
+    signal-desktop
     notion-app-enhanced
 
     # archives
