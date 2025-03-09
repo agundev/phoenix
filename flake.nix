@@ -29,7 +29,7 @@ rec {
 
     nixos-cli.url = "github:water-sucks/nixos";
 
-    stylix.url = "github:danth/stylix";
+    stylix.url = "github:geodic/stylix/gdm-icon-theme";
 
     nixcord.url = "github:kaylorben/nixcord";
   };
