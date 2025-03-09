@@ -21,7 +21,7 @@ in
     phoenix = {
       networking.networkmanager = true;
       audio.pipewire = true;
-      desktop.cups = true;
+      desktop.printing = true;
     };
 
     services.xserver.enable = true;
