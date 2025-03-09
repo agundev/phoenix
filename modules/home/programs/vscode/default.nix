@@ -22,7 +22,7 @@ in
     lib.mkIf cfg {
       programs.vscode = {
         enable = true;
-        userSettings = {
+        profiles.default.userSettings = {
           # Stylix
           "editor.fontFamily" = lib.mkForce firaCode;
           "editor.inlayHints.fontFamily" = lib.mkForce firaCode;
