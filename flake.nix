@@ -16,7 +16,6 @@ rec {
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -39,7 +38,6 @@ rec {
       flake-parts,
       home-manager,
       nixpkgs,
-      nixpkgs-stable,
       nixos-cli,
       stylix,
       nixcord,
@@ -71,11 +69,10 @@ rec {
         nixosConfigurations = builtins.mapAttrs (
           hostname: _:
           let
-            hostConfig = import ./hosts/${hostname};
-            pkgs = if hostConfig.channel or "unstable" == "stable" then nixpkgs-stable else nixpkgs;
+            hostConfig = import ./hosts/${hostname}/hardware.nix;
             system = hostConfig.system or "x86_64-linux";
           in
-          pkgs.lib.nixosSystem {
+          nixpkgs.lib.nixosSystem {
             inherit system;
             modules = lib.flatten [
               ./hosts/${hostname}
@@ -87,12 +84,11 @@ rec {
               stylix.nixosModules.stylix
 
               (builtins.filter (path: baseNameOf path == "default.nix") (
-                pkgs.lib.filesystem.listFilesRecursive ./modules/nixos
+                nixpkgs.lib.filesystem.listFilesRecursive ./modules/nixos
               ))
             ];
             specialArgs = {
-              inherit inputs;
-              lib = mkLib pkgs;
+              inherit inputs lib system;
             };
           }
         ) (builtins.readDir ./hosts);
@@ -130,8 +126,7 @@ rec {
                 ))
               ];
               extraSpecialArgs = {
-                inherit lib;
-                inherit inputs;
+                inherit inputs lib system;
               };
             }
           ) (builtins.readDir ./homes);

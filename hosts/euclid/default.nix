@@ -11,49 +11,32 @@
 {
   imports = [
     ./hardware-config.nix
-    inputs.nixos-hardware.nixosModules.common-pc-laptop
-    inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
-    inputs.nixos-hardware.nixosModules.common-gpu-intel-tiger-lake
-    inputs.nixos-hardware.nixosModules.common-cpu-intel-cpu-only
+    inputs.nixos-hardware.nixosModules.raspberry-pi-3
   ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
 
-  networking.hostName = "euler";
+  networking.hostName = "euclid";
 
   phoenix = {
-    boot = {
-      plymouth = true;
-    };
-    hardware = {
-      fprint = true;
-    };
     disks = {
       swap = true;
       zram = true;
     };
-    desktop = {
-      gnome = true;
-      flatpak = true;
-      v4l2 = true;
-      ddcci = true;
-    };
     networking = {
       firewall = true;
       tailscale = true;
+      networkmanager = true;
+    };
+    services = {
+      mainsail = true;
     };
     locale = {
       eastern = true;
-    };
-    users = {
-      mainUser = "advaith";
-      advaith = true;
     };
   };
 
