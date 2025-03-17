@@ -1,7 +1,9 @@
 {
   config,
   lib,
+  inputs,
   pkgs,
+  system,
   ...
 }:
 
@@ -25,6 +27,7 @@
     # apps
     fastfetch
     brave
+    inputs.zen-browser.packages."${system}".twilight
     micro
     spotify
     signal-desktop
