@@ -1,13 +1,15 @@
 final: prev: {
   libfprint = prev.libfprint.overrideAttrs (oldAttrs: {
-    version = "1.94.7-elanmoc2";
+    version = "1.94.9-elanmoc2";
     src = prev.fetchFromGitLab {
       domain = "gitlab.freedesktop.org";
-      owner = "depau";
+      owner = "geodic";
       repo = "libfprint";
-      rev = "refs/heads/elanmoc2";
-      sha256 = "sha256-aLvt04SPjeqsGMWh4hpwGJnrV2zWWMPUePiysM6921g=";
+      rev = "refs/heads/master";
+      sha256 = "sha256-ZHX6nw1MGgrwAqxhe4pvGJ7nU2OM32hubEFA1N7EMBE=";
     };
+
+    buildInputs = with prev; [ nss ] ++ oldAttrs.buildInputs;
   });
 
   libfprint-grosshack = prev.stdenv.mkDerivation rec {
