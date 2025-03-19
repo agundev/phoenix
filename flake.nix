@@ -31,6 +31,8 @@ rec {
     stylix.url = "github:geodic/stylix/gdm-icon-theme";
 
     nixcord.url = "github:kaylorben/nixcord";
+
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
 
   outputs =
