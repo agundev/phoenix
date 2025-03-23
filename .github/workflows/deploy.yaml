@@ -10,8 +10,8 @@ jobs:
     - uses: nixbuild/nix-quick-install-action@v30
     - uses: nix-community/cache-nix-action@v6
       with:
-        primary-key: nix-${{ runner.os }}-${{ hashFiles('**/*.nix', '**/flake.lock') }}
-        restore-prefixes-first-match: nix-${{ runner.os }}-
+        primary-key: nix-x86_64-${{ hashFiles('**/*.nix', '**/flake.lock') }}
+        restore-prefixes-first-match: nix-x86_64-
     - uses: cachix/cachix-action@v14
       with:
         name: phoenix
@@ -25,8 +25,8 @@ jobs:
     - uses: nixbuild/nix-quick-install-action@v30
     - uses: nix-community/cache-nix-action@v6
       with:
-        primary-key: nix-${{ runner.os }}-${{ hashFiles('**/*.nix', '**/flake.lock') }}
-        restore-prefixes-first-match: nix-${{ runner.os }}-
+        primary-key: nix-arm64-${{ hashFiles('**/*.nix', '**/flake.lock') }}
+        restore-prefixes-first-match: nix-arm64-
     - uses: cachix/cachix-action@v14
       with:
         name: phoenix
