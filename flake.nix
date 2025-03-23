@@ -33,16 +33,20 @@ rec {
     nixcord.url = "github:kaylorben/nixcord";
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
+
+    deploy-rs.url = "github:serokell/deploy-rs";
   };
 
   outputs =
     inputs@{
+      self,
       flake-parts,
       home-manager,
       nixpkgs,
       nixos-cli,
       stylix,
       nixcord,
+      deploy-rs,
       ...
     }:
     let
@@ -54,6 +58,13 @@ rec {
             setNestedAttr =
               attr: value: attrset:
               builtins.mapAttrs (_: v: v // { ${attr} = value; }) attrset;
+
+            recursiveConcatMapAttrs = 
+              f: v:
+              prev.foldl' prev.recursiveUpdate { }
+                (prev.attrValues
+                  (prev.mapAttrs f v)
+                );
           }
           // home-manager.lib
         );
@@ -62,22 +73,32 @@ rec {
       overlays = builtins.map (overlayPath: import overlayPath) (
         builtins.filter (path: baseNameOf path == "default.nix") (
           nixpkgs.lib.filesystem.listFilesRecursive ./overlays
-        )
+        ) 
       );
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [ inputs.home-manager.flakeModules.home-manager ];
-      flake = {
-        nixosConfigurations = builtins.mapAttrs (
-          hostname: _:
-          let
-            hostConfig = import ./hosts/${hostname}/hardware.nix;
-            system = hostConfig.system or "x86_64-linux";
-          in
-          nixpkgs.lib.nixosSystem {
-            inherit system;
+      flake = lib.recursiveConcatMapAttrs (
+        hostname: _:
+        let
+          defaultConfig = {
+            system = "x86_64-linux";
+            homes = [];
+          };
+          config = defaultConfig // (import ./hosts/${hostname}/config.nix);
+          deployPkgs = import nixpkgs {
+            inherit (config) system;
+            overlays = [
+              (final: prev: lib.recursiveUpdate (deploy-rs.overlay final prev) { deploy-rs.deploy-rs = prev.deploy-rs; })
+            ];
+          };
+        in
+        rec {
+          nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
+            inherit (config) system;
             modules = lib.flatten [
               ./hosts/${hostname}
+              ./hosts/${hostname}/hardware.nix
               {
                 nixpkgs.config.allowUnfree = true;
                 nixpkgs.overlays = overlays;
@@ -90,11 +111,33 @@ rec {
               ))
             ];
             specialArgs = {
-              inherit inputs lib system;
+              inherit (config) system;
+              inherit inputs lib;
             };
-          }
-        ) (builtins.readDir ./hosts);
-      };
+          };
+          deploy.nodes.${hostname} = {
+            inherit hostname;
+
+            sshUser = "root";
+
+            profilesOrder = [ "system" ] ++ config.homes;
+            profiles = {
+              system = {
+                user = "root";
+                path = deployPkgs.deploy-rs.lib.activate.nixos nixosConfigurations.${hostname};
+              };
+            } // (builtins.listToAttrs (builtins.map (home: 
+            {
+              name = home;
+              value = {
+                user = home;
+                path = deployPkgs.deploy-rs.lib.activate.home-manager self.legacyPackages.${config.system}.homeConfigurations.${home};
+              };
+            }
+            ) config.homes));
+          };
+        }
+      ) (builtins.readDir ./hosts);
       systems = [
         "x86_64-linux"
         "aarch64-linux"
@@ -132,6 +175,10 @@ rec {
               };
             }
           ) (builtins.readDir ./homes);
+
+          devShells.default = pkgs.mkShell {
+            packages = with pkgs; [ pkgs.deploy-rs nixfmt-rfc-style ];
+          };
         };
     };
 }

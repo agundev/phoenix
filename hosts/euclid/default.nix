@@ -10,7 +10,6 @@
 }:
 {
   imports = [
-    ./hardware-config.nix
     inputs.nixos-hardware.nixosModules.raspberry-pi-3
   ];
 
