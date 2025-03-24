@@ -10,6 +10,8 @@ final: prev: {
     };
 
     buildInputs = with prev; [ nss ] ++ oldAttrs.buildInputs;
+
+    mesonFlags = prev.lib.remove "-Ddrivers=all" oldAttrs.mesonFlags;
   });
 
   libfprint-grosshack = prev.stdenv.mkDerivation rec {
