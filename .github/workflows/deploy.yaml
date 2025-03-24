@@ -6,6 +6,11 @@ jobs:
   deploy-x64_86:
     runs-on: 	ubuntu-24.04
     steps:
+    - uses: tailscale/github-action@v3
+      with:
+        oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+        oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+        tags: tag:phoenix-ci
     - uses: actions/checkout@v4
     - uses: nixbuild/nix-quick-install-action@v30
     - uses: nix-community/cache-nix-action@v6
@@ -22,6 +27,11 @@ jobs:
   deploy-aarch64:
     runs-on: 	ubuntu-24.04-arm
     steps:
+    - uses: tailscale/github-action@v3
+      with:
+        oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+        oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+        tags: tag:phoenix-ci
     - uses: actions/checkout@v4
     - uses: nixbuild/nix-quick-install-action@v30
     - uses: nix-community/cache-nix-action@v6
