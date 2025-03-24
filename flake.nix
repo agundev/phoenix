@@ -26,7 +26,7 @@ rec {
 
     nixos-hardware.url = "github:geodic/nixos-hardware/fixes";
 
-    nixos-cli.url = "github:water-sucks/nixos";
+    nixos-cli.url = "github:geodic/nixos/syscalls-fix";
 
     stylix.url = "github:geodic/stylix/gdm-icon-theme";
 
