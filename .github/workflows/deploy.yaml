@@ -12,6 +12,7 @@ jobs:
       with:
         primary-key: nix-x86_64-${{ hashFiles('**/*.nix', '**/flake.lock') }}
         restore-prefixes-first-match: nix-x86_64-
+        gc-max-store-size: 5G
     - uses: cachix/cachix-action@v14
       with:
         name: phoenix
@@ -27,6 +28,7 @@ jobs:
       with:
         primary-key: nix-arm64-${{ hashFiles('**/*.nix', '**/flake.lock') }}
         restore-prefixes-first-match: nix-arm64-
+        gc-max-store-size: 5G
     - uses: cachix/cachix-action@v14
       with:
         name: phoenix
