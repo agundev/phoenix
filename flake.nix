@@ -26,8 +26,6 @@ rec {
 
     nixos-hardware.url = "github:geodic/nixos-hardware/fixes";
 
-    nixos-cli.url = "github:geodic/nixos/syscalls-fix";
-
     stylix.url = "github:geodic/stylix/gdm-icon-theme";
 
     nixcord.url = "github:kaylorben/nixcord";
@@ -43,7 +41,6 @@ rec {
       flake-parts,
       home-manager,
       nixpkgs,
-      nixos-cli,
       stylix,
       nixcord,
       deploy-rs,
@@ -103,7 +100,6 @@ rec {
                 nixpkgs.config.allowUnfree = true;
                 nixpkgs.overlays = overlays;
               }
-              nixos-cli.nixosModules.nixos-cli
               stylix.nixosModules.stylix
 
               (builtins.filter (path: baseNameOf path == "default.nix") (
