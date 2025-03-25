@@ -1,7 +1,13 @@
 name: "Deploy"
+
 on:
   pull_request:
   push:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   deploy-x64_86:
     runs-on: 	ubuntu-24.04
@@ -23,7 +29,8 @@ jobs:
         name: phoenix
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - uses: nicknovitski/nix-develop@v1
-    - run: for host in euler; do deploy -k .#$host 2>&1 | ack --passthru --nocolor "Copying profile" || exit 1; done
+    - run: for host in euler; do deploy -sk .#$host 2>&1 | ack --passthru --nocolor "Copying profile" || exit 1; done
+
   deploy-aarch64:
     runs-on: 	ubuntu-24.04-arm
     steps:
@@ -44,4 +51,4 @@ jobs:
         name: phoenix
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - uses: nicknovitski/nix-develop@v1
-    - run: for host in euclid; do deploy -k .#$host 2>&1 | ack --passthru --nocolor "Copying profile" || exit 1; done
+    - run: for host in euclid; do deploy -sk .#$host 2>&1 | ack --passthru --nocolor "Copying profile" || exit 1; done
