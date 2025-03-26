@@ -67,4 +67,8 @@ jobs:
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - uses: actions/checkout@v4
     - uses: nicknovitski/nix-develop@v1
+    - uses: namespacelabs/breakpoint-action@v0
+      with:
+        duration: 30m
+        authorized-keys: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDWmAGFa5CU/HJCNkQQnnLiUSdLQAxI8hWuskNQwfcpfVu1G/OQWSRFZ5w7feXTDIE2UHLSm0Tp2G4JSNz+Td1oZuBHBtuPvyo3cH2l0GSMTzOiIO5LhxV7jFNmu3v4PBCYRAA9jjPkgKp8i5ULyB1QX5BoQHNSyqx9PAgQCwJJQT2DxQICkRL06Tbd5lpNPTZwDI5WFd47/MscMCbZ/vZP5b5dH1poOMDnFaZO36n6/Edj2ABKBW+aXMsdHxBadTMKnyDD+sb9E87Vu4aALCEDxcgNzswV7RBW+OkvUOe9YXvoWBxklpJK0CPjt4C/s9RCOhH7ftbx8CnSKqty/+tlCyXauyAqSmHb9gnEUd3gCJqJ5896zXczuEhhdsiM2Dc1mGzzX61fA9GKpY1LkswCxWqJj1wHlhhAerMl5xI+2HKV4lV59EFIRQbGY5ffKHVO6CoDYyNkrWeQ5cWKlDuQviuBFBC/bxK0mgczTsOueQsjib3VhqxMN1TXs3lrlTE= code@codespaces-2df4b3
     - run: for host in euclid; do deploy -sk .#$host 2>&1 | ack --passthru --nocolor "Copying profile" || exit 1; done
