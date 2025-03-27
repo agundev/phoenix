@@ -1,22 +1,22 @@
 {
   config,
   lib,
-  inputs,
-  system,
   ...
 }:
 
 let
-  cfg = config.phoenix.nixos.deploy;
+  cfg = config.phoenix.services.ssh;
 in
 {
-  options.phoenix.nixos.deploy = lib.mkOption {
+  options.phoenix.services.ssh = lib.mkOption {
     type = lib.types.bool;
     default = true;
-    description = "Enable deployment configuration.";
+    description = "Enable SSH server.";
   };
 
   config = lib.mkIf cfg {
+    services.openssh.enable = true;
+
     users.users.root.openssh.authorizedKeys.keys = [ (builtins.readFile ./key.pub) ];
   };
 }
