@@ -10,6 +10,10 @@ let
   hardware = import ./config.nix;
 in
 {
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+  ];
+
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-label/NIXOS_SD";
