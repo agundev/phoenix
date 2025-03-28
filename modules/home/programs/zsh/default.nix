@@ -8,13 +8,13 @@ let
   cfg = config.phoenix.programs.zsh;
 in
 {
-  options.phoenix.programs.zsh = lib.mkOption {
+  options.phoenix.programs.zsh.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable ZSH shell configuration.";
   };
 
-  config = lib.mkIf cfg {
+  config = lib.mkIf cfg.enable {
     programs.zsh = {
       enable = true;
       antidote = {

@@ -9,13 +9,13 @@ let
   cfg = config.phoenix.programs._1password;
 in
 {
-  options.phoenix.programs._1password = lib.mkOption {
+  options.phoenix.programs._1password.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable 1Password password manager.";
   };
 
-  config = lib.mkIf cfg {
+  config = lib.mkIf cfg.enable {
     programs = {
       ssh = {
         enable = true;

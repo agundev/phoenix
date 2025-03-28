@@ -9,13 +9,13 @@ let
   cfg = config.phoenix.desktop.ddcci;
 in
 {
-  options.phoenix.desktop.ddcci = lib.mkOption {
+  options.phoenix.desktop.ddcci.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable DDCCI configuration.";
   };
 
-  config = lib.mkIf cfg {
+  config = lib.mkIf cfg.enable {
     boot.kernelModules = [ "ddcci" "ddcci-backlight" ];
     hardware.i2c.enable = true;
     services.ddccontrol.enable = true;

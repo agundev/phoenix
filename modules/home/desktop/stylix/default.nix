@@ -9,13 +9,13 @@ let
   cfg = config.phoenix.desktop.stylix;
 in
 {
-  options.phoenix.desktop.stylix = lib.mkOption {
+  options.phoenix.desktop.stylix.enable = lib.mkOption {
     type = lib.types.bool;
     default = true;
     description = "Enable Stylix theming engine.";
   };
 
-  config = lib.mkIf cfg {
+  config = lib.mkIf cfg.enable {
     stylix.enable = true;
 
     stylix.image = ../../../../assets/wallpaper.png;

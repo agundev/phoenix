@@ -23,19 +23,19 @@
 
   phoenix = {
     disks = {
-      swap = true;
-      zram = true;
+      swap.enable = true;
+      zram.enable = true;
     };
     networking = {
-      firewall = true;
-      tailscale = true;
-      networkmanager = true;
+      firewall.enable = true;
+      tailscale.enable = true;
+      networkmanager.enable = true;
     };
     services = {
-      mainsail = true;
+      mainsail.enable = true;
     };
     locale = {
-      eastern = true;
+      eastern.enable = true;
     };
   };
 

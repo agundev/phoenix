@@ -31,8 +31,8 @@ in
     nix.settings.trusted-users = [ "advaith" ];
 
     phoenix.programs = {
-      _1password = true;
-      adb = true;
+      _1password.enable = true;
+      adb.enable = true;
     };
 
     programs.zsh.enable = true;

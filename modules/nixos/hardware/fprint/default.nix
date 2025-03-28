@@ -11,13 +11,13 @@ let
   pamServices = config.security.pam.services;
 in
 {
-  options.phoenix.hardware.fprint = lib.mkOption {
+  options.phoenix.hardware.fprint.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable Fprintd fingerprint daemon.";
   };
 
-  config = lib.mkIf cfg {
+  config = lib.mkIf cfg.enable {
     services.fprintd.enable = true;
 
     systemd.services.fprintd = {

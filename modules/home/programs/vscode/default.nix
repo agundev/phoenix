@@ -8,7 +8,7 @@ let
   cfg = config.phoenix.programs.vscode;
 in
 {
-  options.phoenix.programs.vscode = lib.mkOption {
+  options.phoenix.programs.vscode.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable Visual Studio Code editor.";
@@ -19,7 +19,7 @@ in
       firaCode = "'FiraCode Nerd Font', 'Droid Sans Mono', 'monospace', monospace";
       firaCodeMono = "'FiraCode Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace";
     in
-    lib.mkIf cfg {
+    lib.mkIf cfg.enable {
       programs.vscode = {
         enable = true;
         profiles.default.userSettings = {

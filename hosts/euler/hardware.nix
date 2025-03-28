@@ -10,7 +10,7 @@
 }:
 
 let
-  hardware = import ./config.nix;
+  hardware = (import ./config.nix).hardware;
 in
 {
   imports = [

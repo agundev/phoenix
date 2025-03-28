@@ -8,13 +8,13 @@ let
   cfg = config.phoenix.boot.plymouth;
 in
 {
-  options.phoenix.boot.plymouth = lib.mkOption {
+  options.phoenix.boot.plymouth.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable Plymouth boot splash configuration.";
   };
 
-  config = lib.mkIf cfg {
+  config = lib.mkIf cfg.enable {
     boot.plymouth = {
       enable = true;
       theme = lib.mkDefault "bgrt";

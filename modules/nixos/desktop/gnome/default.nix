@@ -11,17 +11,17 @@ let
   mainUser = config.phoenix.users.mainUser;
 in
 {
-  options.phoenix.desktop.gnome = lib.mkOption {
+  options.phoenix.desktop.gnome.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable GNOME Desktop Environment.";
   };
 
-  config = lib.mkIf cfg {
+  config = lib.mkIf cfg.enable {
     phoenix = {
-      networking.networkmanager = true;
-      audio.pipewire = true;
-      desktop.printing = true;
+      networking.networkmanager.enable = true;
+      audio.pipewire.enable = true;
+      desktop.printing.enable = true;
     };
 
     services.xserver.enable = true;

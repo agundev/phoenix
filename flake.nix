@@ -10,7 +10,7 @@ rec {
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "watersucks.cachix.org-1:6gadPC5R8iLWQ3EUtfu3GFrVY7X6I4Fwz/ihW25Jbv8="
-      "phoenix.cachix.org-1:/VAwo3zaKEPYHybnBhqWh1aMSNqw9F9mXbJB57WdzfM="
+      "phoenix.cachix.org-1:Jcu2oz0aHNqr/uI1yzMldvCQ0bXLHcsUzJE5XHp7FEA="
     ];
   };
 
@@ -79,12 +79,15 @@ rec {
         hostname: _:
         let
           defaultConfig = {
-            system = "x86_64-linux";
+            hardware = {
+              system = "x86_64-linux";
+              ram = 8 * 1024;
+            };
             homes = [];
           };
-          config = defaultConfig // (import ./hosts/${hostname}/config.nix);
+          config = lib.recursiveUpdate defaultConfig (import ./hosts/${hostname}/config.nix);
           deployPkgs = import nixpkgs {
-            inherit (config) system;
+            inherit (config.hardware) system;
             overlays = [
               (final: prev: lib.recursiveUpdate (deploy-rs.overlay final prev) { deploy-rs.deploy-rs = prev.deploy-rs; })
             ];
@@ -92,7 +95,7 @@ rec {
         in
         rec {
           nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
-            inherit (config) system;
+            inherit (config.hardware) system;
             modules = lib.flatten [
               ./hosts/${hostname}
               ./hosts/${hostname}/hardware.nix
@@ -107,7 +110,7 @@ rec {
               ))
             ];
             specialArgs = {
-              inherit (config) system;
+              inherit (config) hardware;
               inherit inputs lib;
             };
           };
@@ -127,7 +130,7 @@ rec {
               name = home;
               value = {
                 user = home;
-                path = deployPkgs.deploy-rs.lib.activate.home-manager self.legacyPackages.${config.system}.homeConfigurations.${home};
+                path = deployPkgs.deploy-rs.lib.activate.home-manager self.legacyPackages.${config.hardware.system}.homeConfigurations.${home};
               };
             }
             ) config.homes));

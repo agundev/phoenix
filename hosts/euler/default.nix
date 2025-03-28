@@ -28,27 +28,27 @@
 
   phoenix = {
     boot = {
-      plymouth = true;
+      plymouth.enable = true;
     };
     hardware = {
-      fprint = true;
+      fprint.enable = true;
     };
     disks = {
-      swap = true;
-      zram = true;
+      swap.enable = true;
+      zram.enable = true;
     };
     desktop = {
-      gnome = true;
-      flatpak = true;
-      v4l2 = true;
-      ddcci = true;
+      gnome.enable = true;
+      flatpak.enable = true;
+      v4l2.enable = true;
+      ddcci.enable = true;
     };
     networking = {
-      firewall = true;
-      tailscale = true;
+      firewall.enable = true;
+      tailscale.enable = true;
     };
     locale = {
-      eastern = true;
+      eastern.enable = true;
     };
     users = {
       mainUser = "advaith";

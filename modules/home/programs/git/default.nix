@@ -8,13 +8,13 @@ let
   cfg = config.phoenix.programs.git;
 in
 {
-  options.phoenix.programs.git = lib.mkOption {
+  options.phoenix.programs.git.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable Git version control.";
   };
 
-  config = lib.mkIf cfg {
+  config = lib.mkIf cfg.enable {
     programs.git = {
       enable = true;
       userName = "geodic";

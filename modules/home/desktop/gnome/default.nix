@@ -9,17 +9,17 @@ let
   cfg = config.phoenix.desktop.gnome;
 in
 {
-  options.phoenix.desktop.gnome = lib.mkOption {
+  options.phoenix.desktop.gnome.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable Gnome configuration.";
   };
 
   config =
-    lib.mkIf cfg {
+    lib.mkIf cfg.enable {
       phoenix = {
         desktop = {
-          fontconfig = true;
+          fontconfig.enable = true;
         };
       };
 

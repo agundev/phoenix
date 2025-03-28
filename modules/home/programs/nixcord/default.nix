@@ -8,13 +8,13 @@ let
   cfg = config.phoenix.programs.nixcord;
 in
 {
-  options.phoenix.programs.nixcord = lib.mkOption {
+  options.phoenix.programs.nixcord.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable Vesktop through Nixcord";
   };
 
-  config = lib.mkIf cfg {
+  config = lib.mkIf cfg.enable {
     programs.nixcord = {
       enable = true;
       discord.enable = false;

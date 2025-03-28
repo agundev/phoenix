@@ -8,13 +8,13 @@ let
   cfg = config.phoenix.locale.eastern;
 in
 {
-  options.phoenix.locale.eastern = lib.mkOption {
+  options.phoenix.locale.eastern.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable Eastern locale configuration.";
   };
 
-  config = lib.mkIf cfg {
+  config = lib.mkIf cfg.enable {
     # Set your time zone.
     time.timeZone = "America/New_York";
 

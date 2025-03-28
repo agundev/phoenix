@@ -10,16 +10,16 @@
 {
   phoenix = {
     desktop = {
-      gnome = true;
+      gnome.enable = true;
     };
     programs = {
-      ghostty = true;
-      git = true;
-      vscode = true;
-      zsh = true;
-      direnv = true;
-      nixcord = true;
-      _1password = true;
+      ghostty.enable = true;
+      git.enable = true;
+      vscode.enable = true;
+      zsh.enable = true;
+      direnv.enable = true;
+      nixcord.enable = true;
+      _1password.enable = true;
     };
   };
 

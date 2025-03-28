@@ -8,13 +8,13 @@ let
   cfg = config.phoenix.audio.pipewire;
 in
 {
-  options.phoenix.audio.pipewire = lib.mkOption {
+  options.phoenix.audio.pipewire.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable PipeWire audio configuration.";
   };
 
-  config = lib.mkIf cfg {
+  config = lib.mkIf cfg.enable {
     services.pulseaudio.enable = false;
     security.rtkit.enable = true;
     services.pipewire = {

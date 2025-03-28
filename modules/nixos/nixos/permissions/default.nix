@@ -5,14 +5,14 @@ let
   mainUser = config.phoenix.users.mainUser;
 in
 {
-  options.phoenix.system.permissions = lib.mkOption {
+  options.phoenix.system.permissions.enable = lib.mkOption {
     type = lib.types.bool;
     default = true;
     description = "Enable custom permissions configuration.";
   };
 
   config = lib.mkMerge [
-    (lib.mkIf cfg {
+    (lib.mkIf cfg.enable {
       users.groups.nixos = { };
       systemd.tmpfiles.settings."99-nixos" = {
         "/etc/nixos".Z = {

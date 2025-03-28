@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  hardware,
   ...
 }:
 
@@ -8,17 +9,17 @@ let
   cfg = config.phoenix.disks.swap;
 in
 {
-  options.phoenix.disks.swap = lib.mkOption {
+  options.phoenix.disks.swap.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable swap device configuration.";
   };
 
-  config = lib.mkIf cfg {
+  config = lib.mkIf cfg.enable {
     swapDevices = [
       {
         device = "/var/lib/swapfile";
-        size = 8 * 1024;
+        size = hardware.ram;
         priority = 10;
       }
     ];
