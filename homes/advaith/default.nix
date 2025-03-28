@@ -32,6 +32,7 @@
     spotify
     signal-desktop
     notion-app-enhanced
+    blender
 
     # archives
     zip
