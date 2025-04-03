@@ -73,7 +73,8 @@ rec {
         ) 
       );
     in
-    flake-parts.lib.mkFlake { inherit inputs; } {
+    flake-parts.lib.mkFlake { inherit inputs; } ( 
+      { withSystem, ... }: {
       imports = [ inputs.home-manager.flakeModules.home-manager ];
       flake = lib.recursiveConcatMapAttrs (
         hostname: _:
@@ -94,47 +95,49 @@ rec {
           };
         in
         rec {
-          nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
-            inherit (config.hardware) system;
-            modules = lib.flatten [
-              ./hosts/${hostname}
-              ./hosts/${hostname}/hardware.nix
-              {
-                nixpkgs.config.allowUnfree = true;
-                nixpkgs.overlays = overlays;
-              }
-              stylix.nixosModules.stylix
+          nixosConfigurations.${hostname} = withSystem config.hardware.system ({ self', inputs', ... }:
+            nixpkgs.lib.nixosSystem {
+              inherit (config.hardware) system;
+              modules = lib.flatten [
+                ./hosts/${hostname}
+                ./hosts/${hostname}/hardware.nix
+                {
+                  nixpkgs.config.allowUnfree = true;
+                  nixpkgs.overlays = overlays;
+                }
+                stylix.nixosModules.stylix
 
-              (builtins.filter (path: baseNameOf path == "default.nix") (
-                nixpkgs.lib.filesystem.listFilesRecursive ./modules/nixos
-              ))
-            ];
-            specialArgs = {
-              inherit (config) hardware;
-              inherit inputs lib;
-            };
-          };
-          deploy.nodes.${hostname} = {
-            inherit hostname;
-
-            sshUser = "root";
-
-            profilesOrder = [ "system" ] ++ config.homes;
-            profiles = {
-              system = {
-                user = "root";
-                path = deployPkgs.deploy-rs.lib.activate.nixos nixosConfigurations.${hostname};
+                (builtins.filter (path: baseNameOf path == "default.nix") (
+                  nixpkgs.lib.filesystem.listFilesRecursive ./modules/nixos
+                ))
+              ];
+              specialArgs = {
+                inherit (config) hardware;
+                inherit inputs inputs' lib;
               };
-            } // (builtins.listToAttrs (builtins.map (home: 
+            });
+          deploy.nodes.${hostname} = withSystem config.hardware.system ({ self', inputs', ... }: 
             {
-              name = home;
-              value = {
-                user = home;
-                path = deployPkgs.deploy-rs.lib.activate.home-manager self.legacyPackages.${config.hardware.system}.homeConfigurations.${home};
-              };
-            }
-            ) config.homes));
-          };
+              inherit hostname;
+
+              sshUser = "root";
+
+              profilesOrder = [ "system" ] ++ config.homes;
+              profiles = {
+                system = {
+                  user = "root";
+                  path = deployPkgs.deploy-rs.lib.activate.nixos nixosConfigurations.${hostname};
+                };
+              } // (builtins.listToAttrs (builtins.map (home: 
+              {
+                name = home;
+                value = {
+                  user = home;
+                  path = deployPkgs.deploy-rs.lib.activate.home-manager self'.legacyPackages.homeConfigurations.${home};
+                };
+              }
+              ) config.homes));
+            });
         }
       ) (builtins.readDir ./hosts);
       systems = [
@@ -142,7 +145,7 @@ rec {
         "aarch64-linux"
       ];
       perSystem =
-        { pkgs, system, ... }:
+        { pkgs, system, inputs', ... }:
         {
           _module.args.pkgs = import nixpkgs {
             inherit system;
@@ -170,7 +173,7 @@ rec {
                 ))
               ];
               extraSpecialArgs = {
-                inherit inputs lib system;
+                inherit inputs inputs' lib system;
               };
             }
           ) (builtins.readDir ./homes);
@@ -179,5 +182,5 @@ rec {
             packages = with pkgs; [ pkgs.deploy-rs nixfmt-rfc-style ack ];
           };
         };
-    };
+    });
 }
