@@ -5,6 +5,7 @@
 {
   config,
   pkgs,
+  lib,
   inputs,
   ...
 }:
@@ -13,7 +14,10 @@
     inputs.nixos-hardware.nixosModules.raspberry-pi-3
   ];
 
-  # Bootloader.
+  # Bootloader
+  # TODO: Remove only console options without infrec
+  boot.kernelParams = lib.mkForce [];
+
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"

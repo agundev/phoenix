@@ -14,6 +14,17 @@ in
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
+  hardware.deviceTree = {
+    enable = true;
+    overlays = [
+      {
+        name = "disable-bt";
+        dtsFile = ./disable-bt.dts;
+      }
+    ];
+    filter = "bcm2710-rpi-3*";
+  };
+
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-label/NIXOS_SD";
