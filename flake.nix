@@ -104,6 +104,11 @@ rec {
                 {
                   nixpkgs.config.allowUnfree = true;
                   nixpkgs.overlays = overlays;
+                  nixpkgs.hostPlatform = lib.mkDefault config.hardware.system;
+                  
+                  networking.hostName = hostname;
+
+                  system.stateVersion = "25.05";
                 }
                 stylix.nixosModules.stylix
 
