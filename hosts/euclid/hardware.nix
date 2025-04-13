@@ -52,23 +52,24 @@
   };
 
   services.udev.extraRules =
-    let shell = "${pkgs.bash}/bin/bash";
+    let shell = lib.getExe pkgs.bash;
+        strings = lib.getExe' pkgs.binutils "strings";
     in ''
       # https://raw.githubusercontent.com/RPi-Distro/raspberrypi-sys-mods/master/etc.armhf/udev/rules.d/99-com.rules
       KERNEL=="ttyAMA[0-9]*|ttyS[0-9]*", PROGRAM="${shell} -c '\
               ALIASES=/proc/device-tree/aliases; \
               TTYNODE=$$(readlink /sys/class/tty/%k/device/of_node | sed 's/base/:/' | cut -d: -f2); \
-              if [ -e $$ALIASES/bluetooth ] && [ $$TTYNODE/bluetooth = $$(strings $$ALIASES/bluetooth) ]; then \
+              if [ -e $$ALIASES/bluetooth ] && [ $$TTYNODE/bluetooth = $$(${strings} $$ALIASES/bluetooth) ]; then \
                   echo 1; \
               elif [ -e $$ALIASES/console ]; then \
-                  if [ $$TTYNODE = $$(strings $$ALIASES/console) ]; then \
+                  if [ $$TTYNODE = $$(${strings} $$ALIASES/console) ]; then \
                       echo 0;\
                   else \
                       exit 1; \
                   fi \
-              elif [ $$TTYNODE = $$(strings $$ALIASES/serial0) ]; then \
+              elif [ $$TTYNODE = $$(${strings} $$ALIASES/serial0) ]; then \
                   echo 0; \
-              elif [ $$TTYNODE = $$(strings $$ALIASES/serial1) ]; then \
+              elif [ $$TTYNODE = $$(${strings} $$ALIASES/serial1) ]; then \
                   echo 1; \
               else \
                   exit 1; \
