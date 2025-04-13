@@ -14,7 +14,10 @@
   boot.initrd.availableKernelModules = [ ];
   boot.initrd.kernelModules = [ ];
 
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_rpi3;
+  boot.kernelPackages = lib.mkDefault pkgs.linuxKernel.packages.linux_rpi3;
+
+  # fix the following error :
+  # modprobe: FATAL: Module ahci not found in directory
   # https://github.com/NixOS/nixpkgs/issues/154163#issuecomment-1350599022
   nixpkgs.overlays = [
     (_final: super: {
@@ -22,6 +25,7 @@
         super.makeModulesClosure (x // { allowMissing = true; });
     })
   ];
+
   boot.kernelParams = [ "console=null" ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
@@ -73,12 +77,12 @@
     '';
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/255751cc-1b27-43bd";
-    fsType = "btrfs";
+    device = "/dev/disk/by-uuid/d0aec199-8305-4553-92ec-b4868d956265";
+    fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/60E2-68A1";
+    device = "/dev/disk/by-uuid/7D57-461B";
     fsType = "vfat";
     options = [
       "fmask=0077"
