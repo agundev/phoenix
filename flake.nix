@@ -118,7 +118,7 @@ rec {
               ];
               specialArgs = {
                 inherit (config) hardware;
-                inherit inputs inputs' lib;
+                inherit inputs inputs' lib hostname;
               };
             });
           deploy.nodes.${hostname} = withSystem config.hardware.system ({ self', inputs', ... }: 
@@ -178,7 +178,7 @@ rec {
                 ))
               ];
               extraSpecialArgs = {
-                inherit inputs inputs' lib system;
+                inherit inputs inputs' lib system username;
               };
             }
           ) (builtins.readDir ./homes);

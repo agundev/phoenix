@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  hostname,
   ...
 }:
 
@@ -29,6 +30,7 @@ in
             "*://my.mainsail.xyz"
             "*://*.local"
             "*://*.lan"
+            "*://${hostname}"
           ];
 
           trusted_clients = [
