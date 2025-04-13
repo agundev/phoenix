@@ -15,8 +15,18 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    users.users.klipper = {
+      isSystemUser = true;
+      group = "klipper";
+      extraGroups = [ "dialout" ];
+    };
+    users.groups.klipper = { };
+    
     services.klipper = {
       enable = true;
+      user = "klipper";
+      group = "klipper";
+
       firmwares.vinci = {
         enable = true;
         configFile = ./vinci.ini;
