@@ -53,12 +53,6 @@ in
       };
     };
     users.users.moonraker.extraGroups = [ "klipper" ];
-    fileSystems."/var/lib/moonraker/config/klipper.cfg" = {
-      device = "/var/lib/klipper/printer.cfg";
-      fsType = "none";
-      options = [ "bind" ];
-    };
-
     
     services.mainsail.enable = true;
   };
