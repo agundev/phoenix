@@ -16,7 +16,13 @@ in
 
   config = lib.mkIf cfg.enable {
     phoenix.programs.klipper.enable = true;
-    services.moonraker.enable = true;
+    services.moonraker = {
+      enable = true;
+      allowSystemControl = true;
+      address = "0.0.0.0";
+      user = "klipper";
+      group = "klipper";
+    };
     
     services.mainsail.enable = true;
   };
