@@ -22,6 +22,35 @@ in
       address = "0.0.0.0";
       user = "klipper";
       group = "klipper";
+
+      settings = {
+        authorization = {
+          cors_domains = [
+            "*://my.mainsail.xyz"
+            "*://*.local"
+            "*://*.lan"
+          ];
+
+          trusted_clients = [
+            "10.0.0.0/8"
+            "127.0.0.0/8"
+            "169.254.0.0/16"
+            "172.16.0.0/12"
+            "192.168.0.0/16"
+            "100.111.0.0/16"
+            "FE80::/10"
+            "::1/128"
+          ];
+        };
+
+        octoprint_compat = { };
+
+        history = { };
+
+        announcements = {
+          subscriptions = [ "mainsail" ];
+        };
+      };
     };
     
     services.mainsail.enable = true;
