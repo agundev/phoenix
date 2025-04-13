@@ -33,6 +33,7 @@
     signal-desktop
     notion-app-enhanced
     blender
+    orca-slicer
 
     # archives
     zip
