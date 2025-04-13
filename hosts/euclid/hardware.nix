@@ -26,7 +26,7 @@
     })
   ];
 
-  boot.kernelParams = [ "console=null" ];
+  boot.kernelParams = [ "console=null" "8250.nr_uarts=1" ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
