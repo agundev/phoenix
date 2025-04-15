@@ -31,6 +31,8 @@ in
         enable = true;
         configFile = ./vinci.ini;
       };
+
+      mutableConfig = true;
       configFile = ./vinci.cfg;
     };
   };
