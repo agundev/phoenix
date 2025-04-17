@@ -30,28 +30,29 @@ in
 
       programs.gnome-shell = {
         enable = true;
-        extensions = with pkgs; builtins.map (pkg: { package = pkg; }) [
-          gnomeExtensions.dash-to-dock
-          gnomeExtensions.blur-my-shell
-          gnomeExtensions.valent
-          gnomeExtensions.caffeine
-          gnomeExtensions.burn-my-windows
-          gnomeExtensions.just-perfection
-          gnomeExtensions.lock-keys
-          gnomeExtensions.open-bar
-          gnomeExtensions.pano
-          gnomeExtensions.removable-drive-menu
-          gnomeExtensions.tiling-shell
-          gnomeExtensions.tailscale-qs
-          gnomeExtensions.rounded-window-corners-reborn
-          gnomeExtensions.quick-settings-tweaker
-          gnomeExtensions.bluetooth-battery-meter
-          gnomeExtensions.upower-battery
-          gnomeExtensions.top-bar-organizer
-          gnomeExtensions.color-picker
-          gnomeExtensions.search-light
-          gnomeExtensions.lineup
-          gnomeExtensions.brightness-control-using-ddcutil
+        extensions = with pkgs.gnomeExtensions; builtins.map (pkg: { package = pkg; }) [
+          dash-to-dock
+          blur-my-shell
+          valent
+          caffeine
+          burn-my-windows
+          just-perfection
+          lock-keys
+          open-bar
+          pano
+          removable-drive-menu
+          tiling-shell
+          tailscale-qs
+          rounded-window-corners-reborn
+          quick-settings-tweaker
+          bluetooth-battery-meter
+          upower-battery
+          top-bar-organizer
+          color-picker
+          search-light
+          lineup
+          brightness-control-using-ddcutil
+          custom-hot-corners-extended
         ];
       };
     };
