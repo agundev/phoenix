@@ -30,9 +30,14 @@ in
 
     nix.settings.trusted-users = [ "advaith" ];
 
-    phoenix.programs = {
-      _1password.enable = true;
-      adb.enable = true;
+    phoenix = {
+      programs = {
+        _1password.enable = true;
+        adb.enable = true;
+      };
+      services = {
+        input-remapper.enable = true;
+      };
     };
 
     programs.zsh.enable = true;
