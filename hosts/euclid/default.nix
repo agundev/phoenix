@@ -27,8 +27,8 @@
     services = {
       mainsail = {
         enable = true;
-        sslCertificate = ../../assets/cert.pem;
-        sslCertificateKey = ../../assets/key.pem;
+        sslCertificate = ./cert.pem;
+        sslCertificateKey = ./key.pem;
       };
     };
     locale = {
