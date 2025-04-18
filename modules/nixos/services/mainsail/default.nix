@@ -2,6 +2,7 @@
   config,
   lib,
   hostname,
+  pkgs,
   ...
 }:
 
@@ -9,10 +10,27 @@ let
   cfg = config.phoenix.services.mainsail;
 in
 {
-  options.phoenix.services.mainsail.enable = lib.mkOption {
-    type = lib.types.bool;
-    default = false;
-    description = "Enable Mainsail klipper client.";
+  options.phoenix.services.mainsail = {
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Enable Mainsail klipper client.";
+    };
+    https = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Serve Mainsail over HTTPS.";
+    };
+    sslCertificate = lib.mkOption {
+      type = lib.types.path;
+      default = "";
+      description = "Path to the SSL certificate.";
+    };
+    sslCertificateKey = lib.mkOption {
+      type = lib.types.path;
+      default = "";
+      description = "Path to the SSL certificate key.";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -57,6 +75,13 @@ in
       "L /var/lib/moonraker/klipper.cfg - - - - /var/lib/klipper/printer.cfg"
     ];
     
-    services.mainsail.enable = true;
+    services.mainsail = {
+      enable = true;
+      nginx = lib.mkIf cfg.https {
+        addSSL = true;
+        sslCertificate = cfg.sslCertificate;
+        sslCertificateKey = cfg.sslCertificateKey;
+      };
+    };
   };
 }

@@ -25,7 +25,11 @@
       networkmanager.enable = true;
     };
     services = {
-      mainsail.enable = true;
+      mainsail = {
+        enable = true;
+        sslCertificate = ../../assets/cert.pem;
+        sslCertificateKey = ../../assets/key.pem;
+      };
     };
     locale = {
       eastern.enable = true;
