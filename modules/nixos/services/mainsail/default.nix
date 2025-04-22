@@ -83,5 +83,6 @@ in
         sslCertificateKey = cfg.sslCertificateKey;
       };
     };
+    services.nginx.clientMaxBodySize = "100M";
   };
 }
