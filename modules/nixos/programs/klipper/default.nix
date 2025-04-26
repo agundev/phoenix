@@ -1,11 +1,18 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 
 let
   cfg = config.phoenix.programs.klipper;
+  kamp = pkgs.fetchFromGitHub {
+    owner = "kyleisah";
+    repo = "Klipper-Adaptive-Meshing-Purging";
+    rev = "main";
+    sha256 = "sha256-05l1rXmjiI+wOj2vJQdMf/cwVUOyq5d21LZesSowuvc=";
+  };
 in
 {
   options.phoenix.programs.klipper.enable = lib.mkOption {
@@ -32,8 +39,18 @@ in
         configFile = ./vinci.ini;
       };
 
-      mutableConfig = true;
-      configFile = ./vinci.cfg;
+      configFile = pkgs.writeText "vinci.cfg" ''
+        # This config file is managed by NixOS
+        # Any changes made directly to this file will be lost
+
+        [include ${kamp}/Configuration/KAMP_Settings.cfg]
+        [include ${kamp}/Configuration/Adaptive_Meshing.cfg]
+        [include ${kamp}/Configuration/Smart_Park.cfg]
+        [include ${kamp}/Configuration/Line_Purge.cfg]
+
+        ${builtins.readFile ./kamp.cfg}
+        ${builtins.readFile ./vinci.cfg}
+      '';
     };
   };
 }
