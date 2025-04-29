@@ -34,6 +34,7 @@ in
       programs = {
         _1password.enable = true;
         adb.enable = true;
+        metasploit.enable = true;
       };
       services = {
         input-remapper.enable = true;
