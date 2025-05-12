@@ -34,7 +34,10 @@ in
       programs = {
         _1password.enable = true;
         adb.enable = true;
-        metasploit.enable = true;
+        metasploit = {
+          enable = true;
+          user = "advaith";
+        };
       };
       services = {
         input-remapper.enable = true;
