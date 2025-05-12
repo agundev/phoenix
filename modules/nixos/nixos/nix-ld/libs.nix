@@ -18,10 +18,28 @@ with pkgs; [
   nspr
   nss
   stdenv.cc.cc
+  libcxx
   ncurses5
   util-linux
   zlib
   zstd
   libGL
   glib
+  xorg.libX11
+  xorg.libxcb
+  xcb-util-cursor
+  xorg.libXi
+  xorg.libXext
+  xorg.libxkbfile
+  xorg.xcbutilwm
+  xorg.xcbutilimage
+  xorg.xcbutilkeysyms
+  xorg.xcbutilrenderutil
+  xorg.libSM
+  xorg.libICE
+  libxkbcommon
+  libpulseaudio
+  libpng
+  libdrm
+  libbsd
 ]
