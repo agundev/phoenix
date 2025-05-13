@@ -25,6 +25,10 @@ let
   };
   # I need to use python3Packages set because the python3 set does not include the overlay
   pythonEnv = pkgs.python3.withPackages (ps: with pkgs.python3Packages; [ requests multitimer rpi-lgpio pyserial ]);
+  preStart = pkgs.writeText "pre-start.sh" ''
+    rm -rf /tmp/vinci-screen
+    cp -r ${src} /tmp/vinci-screen
+  '';
 in
 {
   options.phoenix.services.vinci-screen.enable = lib.mkOption {
@@ -46,10 +50,10 @@ in
       after = [ "moonraker.service" ];
       serviceConfig = {
         Type = "simple";
-        ExecStartPre = "${pkgs.coreutils}/bin/sleep 5";
-        ExecStart = "${pythonEnv}/bin/python ${src}/run.py";
+        ExecStartPre = "${pkgs.bash}/bin/bash ${preStart}";
+        ExecStart = "${pythonEnv}/bin/python /tmp/vinci-screen/run.py";
         Restart = "always";
-        WorkingDirectory = src;
+        WorkingDirectory = "/tmp/vinci-screen";
       };
     };
   };
