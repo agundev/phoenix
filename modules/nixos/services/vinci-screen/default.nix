@@ -22,14 +22,14 @@ let
       --- a/run.py
       +++ b/run.py
       @@ -4,7 +4,7 @@ from dwinlcd import DWIN_LCD
-      encoder_Pins = (26, 19)
-      button_Pin = 13
-      LCD_COM_Port = '/dev/ttyAMA0'
+       encoder_Pins = (26, 19)
+       button_Pin = 13
+       LCD_COM_Port = '/dev/ttyAMA0'
       -API_Key = 'eb56bb488d3143708656f60074f70af0'
       +API_Key = '${cfg.apikey}'
 
-      DWINLCD = DWIN_LCD(
-              LCD_COM_Port,
+       DWINLCD = DWIN_LCD(
+               LCD_COM_Port,
       '')
       (pkgs.writeText "options.patch" ''
       diff --git a/printerInterface.py b/printerInterface.py
