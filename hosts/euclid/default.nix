@@ -30,6 +30,10 @@
         sslCertificate = ./cert.pem;
         sslCertificateKey = ./key.pem;
       };
+      vinci-screen = {
+        enable = true;
+        apikey = "d1ed0ebe3a7641c287a7e507237e5915";
+      };
     };
     locale = {
       eastern.enable = true;
