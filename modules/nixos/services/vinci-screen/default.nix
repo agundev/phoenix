@@ -26,6 +26,7 @@ let
   # I need to use python3Packages set because the python3 set does not include the overlay
   pythonEnv = pkgs.python3.withPackages (ps: with pkgs.python3Packages; [ requests multitimer rpi-lgpio pyserial ]);
   preStart = pkgs.writeText "pre-start.sh" ''
+    ${pkgs.coreutils}/bin/sleep 10
     rm -rf /tmp/vinci-screen
     cp -r ${src} /tmp/vinci-screen
   '';
