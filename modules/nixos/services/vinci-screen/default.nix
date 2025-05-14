@@ -34,7 +34,7 @@ in
 {
   options.phoenix.services.vinci-screen.enable = lib.mkOption {
     type = lib.types.bool;
-    default = true;
+    default = false;
     description = "Allow the stock Ender 3 S1 LCD to be used with Klipper";
   };
 
