@@ -26,7 +26,7 @@ in
           "zdharma-continuum/fast-syntax-highlighting"
         ];
       };
-      initExtra = builtins.concatStringsSep "\n" [
+      initContent = builtins.concatStringsSep "\n" [
         (builtins.readFile ./environment.zsh)
         (builtins.readFile ./functions.zsh)
         (builtins.concatStringsSep "\n" (

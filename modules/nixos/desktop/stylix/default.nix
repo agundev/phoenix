@@ -37,6 +37,7 @@ in
     stylix.cursor = {
       package = pkgs.material-cursors;
       name = "material_light_cursors";
+      size = 32;
     };
 
     stylix.iconTheme = {

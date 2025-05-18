@@ -18,7 +18,7 @@ rec {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -170,8 +170,8 @@ rec {
                   home.stateVersion = "25.05";
                   programs.home-manager.enable = true;
                 }
-                stylix.homeManagerModules.stylix
-                nixcord.homeManagerModules.nixcord
+                stylix.homeModules.stylix
+                nixcord.homeModules.nixcord
 
                 (builtins.filter (path: baseNameOf path == "default.nix") (
                   lib.filesystem.listFilesRecursive ./modules/home
