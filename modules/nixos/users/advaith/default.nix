@@ -41,6 +41,7 @@ in
       };
       services = {
         input-remapper.enable = true;
+        docker.enable = true;
       };
     };
 
