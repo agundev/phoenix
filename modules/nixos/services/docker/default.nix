@@ -2,9 +2,12 @@
   config,
   lib,
   ...
-}: let
+}: 
+
+let
   cfg = config.phoenix.services.docker;
-in {
+in
+{
   options.phoenix.services.docker.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
