@@ -39,6 +39,7 @@ in
           user = "advaith";
         };
       };
+      services.virt-manager.enable = true;
       services = {
         input-remapper.enable = true;
         docker.enable = true;
