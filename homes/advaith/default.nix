@@ -21,6 +21,9 @@
       nixcord.enable = true;
       _1password.enable = true;
     };
+    services = {
+      hydroxide.enable = true;
+    };
   };
 
   home.packages = with pkgs; [
