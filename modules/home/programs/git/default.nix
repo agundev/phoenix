@@ -18,7 +18,7 @@ in
     programs.git = {
       enable = true;
       userName = "geodic";
-      userEmail = "geodic.github@proton.me";
+      userEmail = "th3geodic@proton.me";
     };
   };
 }
