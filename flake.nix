@@ -18,7 +18,7 @@ rec {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -90,7 +90,7 @@ rec {
           deployPkgs = import nixpkgs {
             inherit (config.hardware) system;
             overlays = [
-              (final: prev: lib.recursiveUpdate (deploy-rs.overlay final prev) { deploy-rs.deploy-rs = prev.deploy-rs; })
+              (final: prev: lib.recursiveUpdate (deploy-rs.overlays.default final prev) { deploy-rs.deploy-rs = prev.deploy-rs; })
             ];
           };
         in
