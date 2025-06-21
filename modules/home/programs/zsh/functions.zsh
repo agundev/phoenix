@@ -1,16 +1,3 @@
-alias home-manager="home-manager --flake /etc/nixos"
-alias hs="home-manager switch"
-alias rso="nixos apply -y"
-alias rs="rso -y ; hs"
-alias upd="nix flake update --flake /etc/nixos"
-alias uhs="upd ; hs"
-alias urso="upd ; rso"
-alias urs="upd ; rs"
-alias cc="nix-collect-garbage"
-alias cca="sudo cc ; cc"
-alias cpg="cc -d"
-alias cpga="sudo cpg ; cpg"
-
 mkcd() {
     mkdir -p "$1" && cd "$1"
 }
@@ -24,3 +11,27 @@ codenv() {
         code "$dir"
     fi
 }
+
+dply() {
+    deploy -sk --auto-rollback false .#$1
+}
+
+x() {
+nix run nixpkgs#$1 -- ${@:2}
+}
+
+s() {
+  local args=()
+  for pkg in $@; do
+    args+=("nixpkgs#$pkg")
+  done
+  nix shell ${args[@]}
+}
+
+alias sd="sudo "
+alias upd="nix flake update --flake /etc/nixos"
+alias udp="upd && dply"
+alias cc="nix-collect-garbage"
+alias cca="sa cc ; cc"
+alias cpg="cc -d"
+alias cpga="sa cpg ; cpg"
