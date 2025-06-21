@@ -37,6 +37,8 @@
     notion-app-enhanced
     blender
     orca-slicer
+    fractal
+    polari
 
     # archives
     zip

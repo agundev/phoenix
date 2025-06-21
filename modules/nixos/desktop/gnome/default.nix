@@ -33,6 +33,9 @@ in
       options = [ "bind" ];
     };
 
+    # TODO: Find better place to put this
+    services.telepathy.enable = true;
+
     services.xserver.desktopManager.gnome.enable = true;
     security.pam.services.login.enableGnomeKeyring = true;
   };
