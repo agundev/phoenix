@@ -39,6 +39,7 @@
     orca-slicer
     fractal
     polari
+    gruvbox-factory
 
     # archives
     zip
