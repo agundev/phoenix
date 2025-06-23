@@ -39,6 +39,7 @@
     orca-slicer
     fractal
     polari
+    rquickshare
     gruvbox-factory
 
     # archives
