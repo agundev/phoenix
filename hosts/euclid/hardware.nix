@@ -14,7 +14,7 @@
   boot.initrd.availableKernelModules = [ ];
   boot.initrd.kernelModules = [ ];
 
-  boot.kernelPackages = lib.mkDefault pkgs.linuxKernel.packages.linux_rpi3;
+  boot.kernelPackages = lib.mkDefault pkgs.linuxKernel.packages.linux_rpi4;
 
   # fix the following error :
   # modprobe: FATAL: Module ahci not found in directory
