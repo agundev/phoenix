@@ -16,22 +16,15 @@ rec {
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     flake-parts.url = "github:hercules-ci/flake-parts";
-
     nixos-hardware.url = "github:geodic/nixos-hardware/fixes";
-
     stylix.url = "github:geodic/stylix/gdm-icon-theme";
-
     nixcord.url = "github:kaylorben/nixcord";
-
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
-
     deploy-rs.url = "github:serokell/deploy-rs";
   };
 
