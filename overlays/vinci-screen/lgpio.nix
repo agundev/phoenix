@@ -5,6 +5,7 @@ let
              , stdenv
              , fetchFromGitHub
              , swig
+             , python3Packages
              , buildPythonPackage ? null
              , lgpioWithoutPython ? null
              , pyProject ? ""
@@ -48,6 +49,9 @@ let
 
       nativeBuildInputs = lib.optionals (pyProject == "PY_LGPIO") [ swig ];
       buildInputs       = [ lgpioWithoutPython ];
+
+	  pyproject = true;
+	  build-system = [ python3Packages.setuptools ];
 
       inherit preConfigure postConfigure preBuild;
       makeFlags = [ "prefix=$(out)" ];

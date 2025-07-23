@@ -13,5 +13,8 @@ final: prev: {
       rich
       image-go-nord
     ];
+
+    pyproject = true;
+    build-system = [ prev.python3Packages.setuptools ];
   };
 }

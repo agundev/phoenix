@@ -10,6 +10,7 @@ final: prev: {
         hash = "sha256-4GZZFQU45ixcy1MbZ6eY47A0rSu1ygJOve9S+mZ1knQ=";
       };
 
+	  pyproject = true;
       build-system = [
         setuptools
       ];
@@ -31,6 +32,7 @@ final: prev: {
         hash = "sha256-hFebEdVDu4q93cHhD81r3CgZ5Yl75y1pSaKwRNcftz4=";
       };
 
+	  pyproject = true;
       build-system = [
         setuptools
       ];
