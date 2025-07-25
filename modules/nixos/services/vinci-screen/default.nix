@@ -27,8 +27,7 @@ let
   pythonEnv = pkgs.python3.withPackages (ps: with pkgs.python3Packages; [ requests multitimer rpi-lgpio pyserial ]);
   preStart = pkgs.writeText "pre-start.sh" ''
     ${pkgs.coreutils}/bin/sleep 10
-    rm -rf /tmp/vinci-screen
-    cp -r ${src} /tmp/vinci-screen
+    cp -r ${src}/* /var/vinci-screen
   '';
 in
 {
@@ -52,9 +51,9 @@ in
       serviceConfig = {
         Type = "simple";
         ExecStartPre = "${pkgs.bash}/bin/bash ${preStart}";
-        ExecStart = "${pythonEnv}/bin/python /tmp/vinci-screen/run.py";
+        ExecStart = "${pythonEnv}/bin/python /run/vinci-screen/run.py";
         Restart = "always";
-        WorkingDirectory = "/tmp/vinci-screen";
+        RuntimeDirectory = "vinci-screen";
       };
     };
   };
