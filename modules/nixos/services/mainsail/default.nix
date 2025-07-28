@@ -35,6 +35,7 @@ in
 
   config = lib.mkIf cfg.enable {
     phoenix.programs.klipper.enable = true;
+    phoenix.services.spoolman.enable = true;
     services.moonraker = {
       enable = true;
       allowSystemControl = true;
@@ -64,6 +65,10 @@ in
         octoprint_compat = { };
 
         history = { };
+
+        spoolman = {
+          server = "http://localhost:7912";
+        };
 
         announcements = {
           subscriptions = [ "mainsail" ];
