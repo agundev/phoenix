@@ -21,6 +21,8 @@ in
   config = lib.mkIf cfg.enable {
     users.users.spoolman = {
       isSystemUser = true;
+      home = "/var/lib/spoolman";
+      createHome = true;
       group = "spoolman";
     };
     users.groups.spoolman = { };
