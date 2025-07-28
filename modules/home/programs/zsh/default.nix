@@ -1,4 +1,5 @@
 {
+  pkgs,
   config,
   lib,
   ...
@@ -24,9 +25,14 @@ in
           "jeffreytse/zsh-vi-mode"
           "zsh-users/zsh-autosuggestions"
           "zdharma-continuum/fast-syntax-highlighting"
+          "tom-doerr/zsh_codex"
         ];
       };
       initContent = builtins.concatStringsSep "\n" [
+        ''
+          # Create Python environment with openai and google-generativeai
+          export ZSH_CODEX_PYTHON="${pkgs.python3.withPackages (ps: [ ps.openai ps.google-generativeai ps.groq ])}/bin/python"
+        ''
         (builtins.readFile ./environment.zsh)
         (builtins.readFile ./functions.zsh)
         (builtins.concatStringsSep "\n" (
