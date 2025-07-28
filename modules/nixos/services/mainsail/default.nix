@@ -75,6 +75,7 @@ in
         };
       };
     };
+    
     users.users.moonraker.extraGroups = [ "klipper" ];
     systemd.tmpfiles.rules = [
       "L /var/lib/moonraker/config/klipper.cfg - - - - /var/lib/klipper/printer.cfg"

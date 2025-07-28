@@ -21,22 +21,34 @@ in
   config = lib.mkIf cfg.enable {
     users.users.spoolman = {
       isSystemUser = true;
-      home = "/var/lib/spoolman";
-      createHome = true;
       group = "spoolman";
     };
     users.groups.spoolman = { };
 
     systemd.services.spoolman = {
       description = "Spoolman server";
+      wantedBy = [ "multi-user.target" ];
       after = [ "network.target" ];
-      wants = [ "network.target" ];
+      preStart = ''
+        mkdir -p /var/lib/spoolman
+        chown spoolman:spoolman /var/lib/spoolman
+      '';
+      
+      environment = {
+        SPOOLMAN_DIR_DATA = "/var/lib/spoolman";
+        SPOOLMAN_DIR_BACKUPS = "/var/lib/spoolman/backups";
+        SPOOLMAN_DIR_LOGS = "/var/lib/spoolman";
+      };
       serviceConfig = {
-        ExecStart = "${lib.getExe pkgs.spoolman}";
+        ExecStart = "${lib.getExe pkgs.spoolman} --host 0.0.0.0 --port 7912";
         Restart = "always";
         User = "spoolman";
         Group = "spoolman";
       };
     };
+
+    systemd.tmpfiles.rules = [
+      "L /var/lib/moonraker/config/klipper.cfg - - - - -"
+    ];
   };
 }
