@@ -42,8 +42,8 @@
     enable = true;
     settings = {
       streams = {
-        camera = "ffmpeg:device?video=100&video_size=1980x1080#video=h264"
+        camera = "ffmpeg:device?video=100&video_size=1980x1080#video=h264";
       };
     };
-  }
+  };
 }
