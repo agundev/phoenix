@@ -6,10 +6,10 @@
 }:
 
 let
-  cfg = config.phoenix.services.klipperscreen;
+  cfg = config.phoenix.services.android-webcam;
 in
 {
-  options.phoenix.services.klipperscreen.enable = lib.mkOption {
+  options.phoenix.services.android-webcam.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "A cool and modern user interface for Klipper";
@@ -22,7 +22,7 @@ in
       video_nr = [ "100" ];
     };
 
-    systemd.services.klipperscreen = {
+    systemd.services.android-webcam = {
       description = "A cool and modern user interface for Klipper";
       wantedBy = [ "multi-user.target" ];
       after = [ "network.service" ];

@@ -48,7 +48,7 @@ in
       home = "/var/lib/klipperscreen";
       createHome = true;
     };
-    groups.klipperscreen = { };
+    users.groups.klipperscreen = { };
 
     systemd.services.klipperscreen = {
       description = "A cool and modern user interface for Klipper";
