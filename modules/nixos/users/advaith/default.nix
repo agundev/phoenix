@@ -23,10 +23,11 @@ in
       extraGroups = [
         "wheel"
         "dialout"
-      ] ++ config.phoenix.users.extraGroups;
+      ]
+      ++ config.phoenix.users.extraGroups;
       shell = pkgs.zsh;
     };
-    users.groups.advaith = {};
+    users.groups.advaith = { };
 
     nix.settings.trusted-users = [ "advaith" ];
 

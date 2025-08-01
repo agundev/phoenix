@@ -2,7 +2,7 @@
   config,
   lib,
   ...
-}: 
+}:
 
 let
   cfg = config.phoenix.services.docker;
@@ -22,6 +22,6 @@ in
       };
     };
 
-    phoenix.users.extraGroups = ["docker"];
+    phoenix.users.extraGroups = [ "docker" ];
   };
 }

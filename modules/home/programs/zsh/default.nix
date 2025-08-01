@@ -31,7 +31,13 @@ in
       initContent = builtins.concatStringsSep "\n" [
         ''
           # Create Python environment with openai and google-generativeai
-          export ZSH_CODEX_PYTHON="${pkgs.python3.withPackages (ps: [ ps.openai ps.google-generativeai ps.groq ])}/bin/python"
+          export ZSH_CODEX_PYTHON="${
+            pkgs.python3.withPackages (ps: [
+              ps.openai
+              ps.google-generativeai
+              ps.groq
+            ])
+          }/bin/python"
         ''
         (builtins.readFile ./environment.zsh)
         (builtins.readFile ./functions.zsh)

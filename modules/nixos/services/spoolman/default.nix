@@ -10,12 +10,10 @@ let
   cfg = config.phoenix.services.spoolman;
 in
 {
-  options.phoenix.services.spoolman = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Enable Spoolman server.";
-    };
+  options.phoenix.services.spoolman.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = false;
+    description = "Enable Spoolman server.";
   };
 
   config = lib.mkIf cfg.enable {
@@ -33,7 +31,7 @@ in
         mkdir -p /var/lib/spoolman
         chown spoolman:spoolman /var/lib/spoolman
       '';
-      
+
       environment = {
         SPOOLMAN_DIR_DATA = "/var/lib/spoolman";
         SPOOLMAN_DIR_BACKUPS = "/var/lib/spoolman/backups";

@@ -6,7 +6,7 @@ final: prev: {
     src = prev.fetchPypi {
       inherit version;
       pname = "gruvbox_factory";
-      hash  = "sha256-ak8YVqwPTj+9MbS9BWbOQDgvAP/S/EvcVxH40Qt9AZ0=";
+      hash = "sha256-ak8YVqwPTj+9MbS9BWbOQDgvAP/S/EvcVxH40Qt9AZ0=";
     };
 
     dependencies = with prev.python3Packages; [

@@ -18,7 +18,10 @@ in
   config = lib.mkIf cfg.enable {
     services.printing = {
       enable = true;
-      drivers = with pkgs; [ mfc5860cnlpr mfc5860cncupswrapper ];
+      drivers = with pkgs; [
+        mfc5860cnlpr
+        mfc5860cncupswrapper
+      ];
     };
   };
 }

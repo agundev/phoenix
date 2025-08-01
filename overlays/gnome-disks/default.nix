@@ -17,18 +17,16 @@ final: prev: {
       };
     };
 
-    nativeBuildInputs = oldAttrs.nativeBuildInputs
-      ++ [
-        prev.rustc
-        prev.cargo
-        prev.rustPlatform.cargoSetupHook
-      ];
+    nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [
+      prev.rustc
+      prev.cargo
+      prev.rustPlatform.cargoSetupHook
+    ];
 
-    buildInputs = builtins.filter (p: p != prev.gtk3) oldAttrs.buildInputs
-      ++ [
-        prev.gtk4
-        prev.libadwaita
-      ];
+    buildInputs = builtins.filter (p: p != prev.gtk3) oldAttrs.buildInputs ++ [
+      prev.gtk4
+      prev.libadwaita
+    ];
 
     postPatch = (oldAttrs.postPatch or "") + ''
       # Create .cargo/config.toml to point Cargo to the vendored dependencies

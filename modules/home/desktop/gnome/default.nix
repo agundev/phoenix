@@ -15,22 +15,23 @@ in
     description = "Enable Gnome configuration.";
   };
 
-  config =
-    lib.mkIf cfg.enable {
-      phoenix = {
-        desktop = {
-          fontconfig.enable = true;
-        };
+  config = lib.mkIf cfg.enable {
+    phoenix = {
+      desktop = {
+        fontconfig.enable = true;
       };
+    };
 
-      home.packages = with pkgs; [
-        gnome-tweaks
-        valent
-      ];
+    home.packages = with pkgs; [
+      gnome-tweaks
+      valent
+    ];
 
-      programs.gnome-shell = {
-        enable = true;
-        extensions = with pkgs.gnomeExtensions; builtins.map (pkg: { package = pkg; }) [
+    programs.gnome-shell = {
+      enable = true;
+      extensions =
+        with pkgs.gnomeExtensions;
+        builtins.map (pkg: { package = pkg; }) [
           dash-to-dock
           blur-my-shell
           valent
@@ -54,6 +55,6 @@ in
           brightness-control-using-ddcutil
           custom-hot-corners-extended
         ];
-      };
     };
+  };
 }

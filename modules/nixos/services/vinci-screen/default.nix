@@ -16,15 +16,23 @@ let
       hash = "sha256-gyW5AkzG/F/V1p543/JrKN7ij5pAHy1QphrAjYFUWuQ="; # Replace with actual hash
     };
     patches = [
-      (pkgs.writeText "options.patch" 
-        (builtins.replaceStrings 
-          [ "<apikey>" "<port>" ] 
-          [ cfg.apikey (toString config.services.moonraker.port) ] 
-          (builtins.readFile ./options.patch)))
+      (pkgs.writeText "options.patch" (
+        builtins.replaceStrings
+          [ "<apikey>" "<port>" ]
+          [ cfg.apikey (toString config.services.moonraker.port) ]
+          (builtins.readFile ./options.patch)
+      ))
     ];
   };
   # I need to use python3Packages set because the python3 set does not include the overlay
-  pythonEnv = pkgs.python3.withPackages (ps: with pkgs.python3Packages; [ requests multitimer rpi-lgpio pyserial ]);
+  pythonEnv = pkgs.python3.withPackages (
+    ps: with pkgs.python3Packages; [
+      requests
+      multitimer
+      rpi-lgpio
+      pyserial
+    ]
+  );
 in
 {
   options.phoenix.services.vinci-screen.enable = lib.mkOption {

@@ -17,7 +17,7 @@ in
 
   options.phoenix.users.extraGroups = lib.mkOption {
     type = lib.types.listOf lib.types.str;
-    default = [];
+    default = [ ];
     description = "Set extra groups for all users.";
   };
 }

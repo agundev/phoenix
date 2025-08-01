@@ -17,6 +17,9 @@ in
   config = lib.mkIf cfg.enable {
     services.openssh.enable = true;
 
-    users.users.root.openssh.authorizedKeys.keys = [ (builtins.readFile ./ci.pub) (builtins.readFile ./home.pub) ];
+    users.users.root.openssh.authorizedKeys.keys = [
+      (builtins.readFile ./ci.pub)
+      (builtins.readFile ./home.pub)
+    ];
   };
 }

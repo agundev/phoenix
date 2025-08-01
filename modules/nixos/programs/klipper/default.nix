@@ -28,7 +28,7 @@ in
       extraGroups = [ "dialout" ];
     };
     users.groups.klipper = { };
-    
+
     services.klipper = {
       enable = true;
       user = "klipper";

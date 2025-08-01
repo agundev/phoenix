@@ -34,7 +34,7 @@ in
           "terminal.integrated.fontFamily" = lib.mkForce firaCodeMono;
 
           # VSCode stuff
-          "editor.tokenColorCustomizations" = {};
+          "editor.tokenColorCustomizations" = { };
 
           # Theme settings
           "workbench.productIconTheme" = "fluent-icons";
@@ -43,7 +43,8 @@ in
 
           # VEX
           "vexrobotics.vexcode.Project.Home" = "/home/advaith/Documents/vex-vscode-projects";
-          "vexrobotics.vexcode.Cpp.Sdk.Home" = "/home/advaith/.config/Code/User/globalStorage/vexrobotics.vexcode/sdk/cpp";
+          "vexrobotics.vexcode.Cpp.Sdk.Home" =
+            "/home/advaith/.config/Code/User/globalStorage/vexrobotics.vexcode/sdk/cpp";
           "vexrobotics.vexcode.General.LogLevel" = 1;
 
           # Direnv

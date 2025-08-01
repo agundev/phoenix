@@ -24,16 +24,17 @@
       tailscale.enable = true;
       networkmanager.enable = true;
     };
+    desktop.v4l2 = {
+      enable = true;
+      devices = 1;
+    };
     services = {
       mainsail = {
         enable = true;
         sslCertificate = ./cert.pem;
         sslCertificateKey = ./key.pem;
       };
-      vinci-screen = {
-        enable = true;
-        apikey = "d1ed0ebe3a7641c287a7e507237e5915";
-      };
+      klipperscreen.enable = true;
     };
     locale = {
       eastern.enable = true;

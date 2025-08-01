@@ -17,6 +17,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    boot.binfmt.emulatedSystems = lib.remove hardware.system [ "x86_64-linux" "aarch64-linux" ];
+    boot.binfmt.emulatedSystems = lib.remove hardware.system [
+      "x86_64-linux"
+      "aarch64-linux"
+    ];
   };
 }

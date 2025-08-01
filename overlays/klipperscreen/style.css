@@ -1,0 +1,18 @@
+/* Border Radius */
+button, trough, entry {
+	border-radius: 1.5em;
+}
+
+/* Buttons */
+button.color1,
+button.color2,
+button.color3,
+button.color4 {
+    border: none;
+    background-color: rgba(212, 212, 216, 0.15);
+}
+
+/* Troughs */
+trough highlight {
+	border-radius: 1.5em 0em 0em 1.5em;
+}

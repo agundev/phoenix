@@ -9,12 +9,10 @@ let
   cfg = config.phoenix.services.hydroxide;
 in
 {
-  options.phoenix.services.hydroxide = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Enable hydroxide service.";
-    };
+  options.phoenix.services.hydroxide.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = false;
+    description = "Enable hydroxide service.";
   };
 
   config = lib.mkIf cfg.enable {

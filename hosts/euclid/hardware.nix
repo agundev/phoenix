@@ -21,12 +21,14 @@
   # https://github.com/NixOS/nixpkgs/issues/154163#issuecomment-1350599022
   nixpkgs.overlays = [
     (_final: super: {
-      makeModulesClosure = x:
-        super.makeModulesClosure (x // { allowMissing = true; });
+      makeModulesClosure = x: super.makeModulesClosure (x // { allowMissing = true; });
     })
   ];
 
-  boot.kernelParams = [ "console=null" "8250.nr_uarts=1" ];
+  boot.kernelParams = [
+    "console=null"
+    "8250.nr_uarts=1"
+  ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
@@ -52,9 +54,11 @@
   };
 
   services.udev.extraRules =
-    let shell = lib.getExe pkgs.bash;
-        strings = lib.getExe' pkgs.binutils "strings";
-    in ''
+    let
+      shell = lib.getExe pkgs.bash;
+      strings = lib.getExe' pkgs.binutils "strings";
+    in
+    ''
       # https://raw.githubusercontent.com/RPi-Distro/raspberrypi-sys-mods/master/etc.armhf/udev/rules.d/99-com.rules
       KERNEL=="ttyAMA[0-9]*|ttyS[0-9]*", PROGRAM="${shell} -c '\
               ALIASES=/proc/device-tree/aliases; \
