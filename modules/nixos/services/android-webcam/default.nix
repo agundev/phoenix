@@ -16,16 +16,19 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    phoenix.desktop.v4l2 = {
-      enable = true;
-      devices = 1;
-      video_nr = [ "100" ];
+    phoenix = {
+      desktop.v4l2 = {
+        enable = true;
+        devices = 1;
+        video_nr = [ "100" ];
+      };
+      services.adb-daemon.enable = true;
     };
 
     systemd.services.android-webcam = {
       description = "A cool and modern user interface for Klipper";
       wantedBy = [ "multi-user.target" ];
-      after = [ "network.service" ];
+      after = [ "network.service" "adb.service" ];
       serviceConfig = {
         Type = "simple";
         ExecStartPre = "${pkgs.android-tools}/bin/adb wait-for-usb-device";

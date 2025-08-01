@@ -38,6 +38,8 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    phoenix.services.adb-daemon.enable = true;
+
     environment.systemPackages = with pkgs; [
       klipperscreen
     ];
@@ -53,7 +55,7 @@ in
     systemd.services.klipperscreen = {
       description = "A cool and modern user interface for Klipper";
       wantedBy = [ "multi-user.target" ];
-      after = [ "moonraker.service" ];
+      after = [ "moonraker.service" "adb.service" ];
       path = with pkgs; [
         git
         android-tools
