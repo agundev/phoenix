@@ -37,4 +37,13 @@
       eastern.enable = true;
     };
   };
+
+  services.go2rtc = {
+    enable = true;
+    settings = {
+      streams = {
+        camera = "ffmpeg:device?video=100&video_size=1980x1080#video=h264"
+      };
+    };
+  }
 }
