@@ -41,6 +41,15 @@ in
     environment.systemPackages = with pkgs; [
       klipperscreen
     ];
+
+    users.users.klipperscreen = {
+      isSystemUser = true;
+      group = "klipperscreen";
+      home = "/var/lib/klipperscreen";
+      createHome = true;
+    };
+    groups.klipperscreen = { };
+
     systemd.services.klipperscreen = {
       description = "A cool and modern user interface for Klipper";
       wantedBy = [ "multi-user.target" ];
@@ -58,7 +67,8 @@ in
         ExecStartPre = prestart;
         ExecStart = "${pkgs.klipperscreen}/bin/KlipperScreen";
         Restart = "always";
-        RuntimeDirectory = "klipperscreen";
+        User = "klipperscreen";
+        Group = "klipperscreen";
       };
     };
   };
