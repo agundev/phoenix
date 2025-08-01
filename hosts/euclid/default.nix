@@ -24,10 +24,6 @@
       tailscale.enable = true;
       networkmanager.enable = true;
     };
-    desktop.v4l2 = {
-      enable = true;
-      devices = 1;
-    };
     services = {
       mainsail = {
         enable = true;
@@ -35,6 +31,7 @@
         sslCertificateKey = ./key.pem;
       };
       klipperscreen.enable = true;
+      android-webcam.enable = true;
     };
     locale = {
       eastern.enable = true;
