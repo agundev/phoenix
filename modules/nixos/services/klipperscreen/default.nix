@@ -7,7 +7,6 @@
 
 let
   cfg = config.phoenix.services.klipperscreen;
-  adb = "${pkgs.android-tools}/bin/adb";
   prestart = pkgs.writeShellScript "klipperscreen-prestart" ''
     adb wait-for-usb-device
 
@@ -28,6 +27,7 @@ let
     fi
 
     adb shell am start-activity x.org.server/.MainActivity
+    ${pkgs.coreutils}/bin/sleep 5
   '';
 in
 {
@@ -38,10 +38,17 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      klipperscreen
+    ];
     systemd.services.klipperscreen = {
       description = "A cool and modern user interface for Klipper";
       wantedBy = [ "multi-user.target" ];
       after = [ "moonraker.service" ];
+      path = with pkgs; [
+        git
+        android-tools
+      ];
       environment = {
         GDK_BACKEND = "x11";
         DISPLAY = ":100";
