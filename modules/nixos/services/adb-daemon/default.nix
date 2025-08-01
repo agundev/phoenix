@@ -22,7 +22,7 @@ in
       after = [ "network.service" ];
       serviceConfig = {
         Type = "simple";
-        ExecStart = "adb -a server nodaemon";
+        ExecStart = "${pkgs.android-tools}/bin/adb -a server nodaemon";
         Restart = "always";
       };
     };
