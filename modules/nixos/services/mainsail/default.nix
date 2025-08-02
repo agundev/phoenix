@@ -78,6 +78,7 @@ in
 
     users.users.moonraker.extraGroups = [ "klipper" ];
     systemd.tmpfiles.rules = [
+      "d /var/lib/moonraker/config - moonraker moonraker - -"
       "L /var/lib/moonraker/config/klipper.cfg - - - - /var/lib/klipper/printer.cfg"
     ];
 
