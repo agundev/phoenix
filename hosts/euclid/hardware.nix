@@ -14,80 +14,25 @@
   boot.initrd.availableKernelModules = [ ];
   boot.initrd.kernelModules = [ ];
 
-  boot.kernelPackages = lib.mkDefault pkgs.linuxKernel.packages.linux_rpi4;
-
-  # fix the following error :
-  # modprobe: FATAL: Module ahci not found in directory
-  # https://github.com/NixOS/nixpkgs/issues/154163#issuecomment-1350599022
-  nixpkgs.overlays = [
-    (_final: super: {
-      makeModulesClosure = x: super.makeModulesClosure (x // { allowMissing = true; });
-    })
-  ];
-
   boot.kernelParams = [
-    "console=null"
+    "console=ttyS1,115200n8"
+    "console=tty0"
     "8250.nr_uarts=1"
   ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
-  boot.loader.systemd-boot.extraFiles = {
-    "config.txt" = pkgs.writeTextFile {
-      name = "config.txt";
-      text = ''
-        # For more information see https://www.raspberrypi.com/documentation/computers/config_txt.html
-        [all]
-
-        # EFI
-        arm_control=0x200
-        armstub=RPI_EFI.fd
-        disable_commandline_tags=2
-        device_tree_address=0x1f0000
-        device_tree_end=0x200000
-
-        # Serial
-        enable_uart=1
-        dtoverlay=disable-bt
-      '';
-    };
-  };
-
-  services.udev.extraRules =
-    let
-      shell = lib.getExe pkgs.bash;
-      strings = lib.getExe' pkgs.binutils "strings";
-    in
-    ''
-      # https://raw.githubusercontent.com/RPi-Distro/raspberrypi-sys-mods/master/etc.armhf/udev/rules.d/99-com.rules
-      KERNEL=="ttyAMA[0-9]*|ttyS[0-9]*", PROGRAM="${shell} -c '\
-              ALIASES=/proc/device-tree/aliases; \
-              TTYNODE=$$(readlink /sys/class/tty/%k/device/of_node | sed 's/base/:/' | cut -d: -f2); \
-              if [ -e $$ALIASES/bluetooth ] && [ $$TTYNODE/bluetooth = $$(${strings} $$ALIASES/bluetooth) ]; then \
-                  echo 1; \
-              elif [ -e $$ALIASES/console ]; then \
-                  if [ $$TTYNODE = $$(${strings} $$ALIASES/console) ]; then \
-                      echo 0;\
-                  else \
-                      exit 1; \
-                  fi \
-              elif [ $$TTYNODE = $$(${strings} $$ALIASES/serial0) ]; then \
-                  echo 0; \
-              elif [ $$TTYNODE = $$(${strings} $$ALIASES/serial1) ]; then \
-                  echo 1; \
-              else \
-                  exit 1; \
-              fi \
-      '", SYMLINK+="serial%c"
-    '';
+  boot.loader.grub.enable = false;
+  boot.loader.generic-extlinux-compatible.enable = true;
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/d0aec199-8305-4553-92ec-b4868d956265";
+    # Cool UUID lol
+    device = "/dev/disk/by-uuid/44444444-4444-4444-8888-888888888888";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/7D57-461B";
+    device = "/dev/disk/by-uuid/2178-694E";
     fsType = "vfat";
     options = [
       "fmask=0077"

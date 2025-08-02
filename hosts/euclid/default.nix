@@ -12,7 +12,6 @@
 {
   phoenix = {
     boot = {
-      systemd-boot.enable = true;
       systemd-initrd.enable = true;
     };
     disks = {
