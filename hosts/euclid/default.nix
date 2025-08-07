@@ -30,19 +30,10 @@
         sslCertificateKey = ./key.pem;
       };
       klipperscreen.enable = true;
-      android-webcam.enable = true;
+      vinci-webcam.enable = true;
     };
     locale = {
       eastern.enable = true;
-    };
-  };
-
-  services.go2rtc = {
-    enable = true;
-    settings = {
-      streams = {
-        camera = "ffmpeg:device?video=/dev/video100&input_format=yuv420p&video_size=4096x2160#video=h264#hardware";
-      };
     };
   };
 }

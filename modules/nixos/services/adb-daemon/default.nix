@@ -9,7 +9,7 @@ let
   cfg = config.phoenix.services.adb-daemon;
   exec = pkgs.writeShellScript "adb-server" ''
     ${pkgs.android-tools}/bin/adb -a server nodaemon &
-
+    
     until ${pkgs.netcat}/bin/nc -z localhost 5037; do
       sleep 0.5
     done
@@ -35,7 +35,7 @@ in
         Type = "notify";
         NotifyAccess = "all";
         ExecStartPre = "${pkgs.android-tools}/bin/adb kill-server";
-        ExecStart = "${pkgs.android-tools}/bin/adb -a server nodaemon";
+        ExecStart = exec;
         Restart = "always";
       };
     };

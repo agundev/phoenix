@@ -27,7 +27,7 @@ let
     fi
 
     adb shell am start-activity x.org.server/.MainActivity
-    ${pkgs.coreutils}/bin/sleep 5
+    ${pkgs.coreutils}/bin/sleep 10
   '';
 in
 {
@@ -68,6 +68,7 @@ in
         Type = "simple";
         ExecStartPre = prestart;
         ExecStart = "${pkgs.klipperscreen}/bin/KlipperScreen";
+        TimeoutStartSec="infinity";
         Restart = "always";
         User = "klipperscreen";
         Group = "klipperscreen";

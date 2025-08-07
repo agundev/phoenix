@@ -21,7 +21,7 @@ in
       description = "Number of loopback devices to create.";
     };
     video_nr = lib.mkOption {
-      type = lib.types.listOf lib.types.str;
+      type = lib.types.listOf lib.types.int;
       default = [];
       description = "The video device number(s) to use for the loopback devices.";
     };
@@ -31,7 +31,7 @@ in
     boot.kernelModules = [ "v4l2loopback" ];
     boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
     boot.extraModprobeConfig = ''
-      options v4l2loopback devices=${toString cfg.devices} video_nr=${lib.concatStringsSep "," cfg.video_nr}
+      options v4l2loopback devices=${toString cfg.devices} ${lib.optionalString (cfg.video_nr != []) "video_nr=${lib.concatStringsSep "," (map toString cfg.video_nr)}"}
     '';
 
     environment.systemPackages = with pkgs; [

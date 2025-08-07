@@ -14,6 +14,17 @@
   boot.initrd.availableKernelModules = [ ];
   boot.initrd.kernelModules = [ ];
 
+  boot.kernelPackages = lib.mkDefault pkgs.linuxKernel.packages.linux_rpi3;
+
+  # fix the following error :
+  # modprobe: FATAL: Module tpm-crb not found in directory...
+  # https://github.com/NixOS/nixpkgs/issues/154163#issuecomment-1350599022
+  nixpkgs.overlays = [
+    (_final: super: {
+      makeModulesClosure = x: super.makeModulesClosure (x // { allowMissing = true; });
+    })
+  ];
+
   boot.kernelParams = [
     "console=ttyS1,115200n8"
     "console=tty0"
