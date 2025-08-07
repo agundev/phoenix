@@ -15,10 +15,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    programs.git = {
-      enable = true;
-      userName = "geodic";
-      userEmail = "th3geodic@proton.me";
-    };
+    programs.git.enable = true;
   };
 }
