@@ -1,5 +1,5 @@
 diff --git a/custom.css b/custom.css
-index af1b28e..0a8eb13 100644
+index af1b28e..725c492 100644
 --- a/custom.css
 +++ b/custom.css
 @@ -42,9 +42,10 @@
@@ -30,7 +30,18 @@ index af1b28e..0a8eb13 100644
  }
  
  .v-navigation-drawer__image {
-@@ -371,4 +374,4 @@ nav.v-navigation-drawer.v-navigation-drawer--clipped.v-navigation-drawer--fixed.
+@@ -271,6 +274,10 @@ a.small-list-item.active-nav-item.v-list-item--active.v-list-item.v-list-item--l
+     border-radius: 6px;
+ }
+ 
++.sidebar-logo {
++    margin-bottom: 15px;
++}
++
+ .ͼ2 .cm-gutters {
+     background-color: rgb(3 1 4 / 77%);
+     color: white;
+@@ -371,4 +378,4 @@ nav.v-navigation-drawer.v-navigation-drawer--clipped.v-navigation-drawer--fixed.
  .row.my-2.mx-0.my-2.mx-0 {
      border-radius: 1em;
      background: rgba(23 23 23 / 25%) !important;
