@@ -8,6 +8,15 @@
 
 let
   cfg = config.phoenix.services.mainsail;
+  theme = pkgs.applyPatches {
+    src = pkgs.fetchFromGitHub {
+      owner = "bumbeng";
+      repo = "mainsail_theme_mainsail";
+      rev = "mainsail_theme_flat";
+      sha256 = "sha256-+HXSpFbZQslaGeHpHwEtU5zJN2V7yky3I6zyjv3LUyc=";
+    };
+    patches = [ ./theme-blur.patch ];
+  };
 in
 {
   options.phoenix.services.mainsail = {
@@ -79,6 +88,7 @@ in
     users.users.moonraker.extraGroups = [ "klipper" ];
     systemd.tmpfiles.rules = [
       "d /var/lib/moonraker/config - moonraker moonraker - -"
+      "L+ /var/lib/moonraker/config/.theme - - - - ${theme}"
       "L /var/lib/moonraker/config/klipper.cfg - - - - /var/lib/klipper/printer.cfg"
     ];
 

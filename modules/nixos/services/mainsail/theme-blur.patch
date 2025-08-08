@@ -1,0 +1,39 @@
+diff --git a/custom.css b/custom.css
+index af1b28e..0a8eb13 100644
+--- a/custom.css
++++ b/custom.css
+@@ -42,9 +42,10 @@
+     height: 50px!important;
+ }
+ 
+-.v-sheet.v-card {
++.v-sheet.v-card, .v-sheet.v-alert {
+     box-shadow: none;
+     border-radius: 1em!important;
++    backdrop-filter: blur(20px);
+ }
+ 
+ .theme--dark.v-data-table {
+@@ -130,6 +131,7 @@
+ 
+ .v-card.v-sheet.theme--dark.panel.settings-menu-dialog {
+     background: transparent!important;
++    backdrop-filter: blur(20px);
+ }
+ 
+ .theme--dark.v-toolbar.v-sheet {
+@@ -195,6 +197,7 @@
+ 
+ .theme--dark.v-navigation-drawer {
+     background: rgb(30 30 30 / 50%);
++    backdrop-filter: blur(20px);
+ }
+ 
+ .v-navigation-drawer__image {
+@@ -371,4 +374,4 @@ nav.v-navigation-drawer.v-navigation-drawer--clipped.v-navigation-drawer--fixed.
+ .row.my-2.mx-0.my-2.mx-0 {
+     border-radius: 1em;
+     background: rgba(23 23 23 / 25%) !important;
+-}
+\ No newline at end of file
++}
