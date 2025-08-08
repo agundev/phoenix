@@ -6,8 +6,8 @@
 }:
 
 let
-  cfg = config.phoenix.services.klipperscreen;
-  prestart = pkgs.writeShellScript "klipperscreen-prestart" ''
+  cfg = config.phoenix.services.mobile-klipperscreen;
+  prestart = pkgs.writeShellScript "mobile-klipperscreen-prestart" ''
     adb wait-for-usb-device
 
     adb forward tcp:6100 tcp:6000
@@ -31,7 +31,7 @@ let
   '';
 in
 {
-  options.phoenix.services.klipperscreen.enable = lib.mkOption {
+  options.phoenix.services.mobile-klipperscreen.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "A cool and modern user interface for Klipper";
