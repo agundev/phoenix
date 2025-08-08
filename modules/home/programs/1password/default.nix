@@ -37,10 +37,29 @@ in
           commit = {
             gpgsign = true;
           };
-          user = {
-            signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBY7Gr5L2ObD1KE3w8PXG0ilvYnPsPXgyIg3xIwQQZfW";
-          };
         };
+        includes = [
+          {
+            condition = "gitdir:Geodic/";
+            contents = {
+              user = {
+                name = "geodic";
+                email = "th3geodic@proton.me";
+                signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBY7Gr5L2ObD1KE3w8PXG0ilvYnPsPXgyIg3xIwQQZfW";
+              };
+            };
+          }
+          {
+            condition = "gitdir:Personal/";
+            contents = {
+              user = {
+                name = "agundev";
+                email = "advaith@gundu.me";
+                signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDWtwI+dIN//xWbUbDcO3o0EnqkMnlmIegO01bYHHhgb";
+              };
+            };
+          }
+        ];
       };
     };
   };

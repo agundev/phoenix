@@ -98,7 +98,12 @@ rec {
                   ./hosts/${hostname}
                   ./hosts/${hostname}/hardware.nix
                   {
-                    nixpkgs.config.allowUnfree = true;
+                    nixpkgs.config = {
+                      allowUnfree = true;
+                      permittedInsecurePackages = [
+                        "libsoup-2.74.3"
+                      ];
+                    };
                     nixpkgs.overlays = overlays;
                     nixpkgs.hostPlatform = lib.mkDefault config.hardware.system;
 
