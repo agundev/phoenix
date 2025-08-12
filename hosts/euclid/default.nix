@@ -29,6 +29,7 @@
         sslCertificate = ./cert.pem;
         sslCertificateKey = ./key.pem;
       };
+      vinci-webcam.enable = true;
     };
     locale = {
       eastern.enable = true;

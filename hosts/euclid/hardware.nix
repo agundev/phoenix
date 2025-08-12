@@ -6,6 +6,16 @@
   ...
 }:
 
+let
+  # Use older kernel
+  oldPkgs = import (builtins.fetchTarball {
+      url = "https://github.com/NixOS/nixpkgs/archive/28ace32529a63842e4f8103e4f9b24960cf6c23a.tar.gz";
+      sha256 = "1zphnsa5dhwgi4dsqza15cjvpi7kksidfmjkjymjninqpv04wgfc";
+  }) {
+    system = pkgs.stdenv.system;
+    config = pkgs.config;
+  };
+in
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -14,7 +24,7 @@
   boot.initrd.availableKernelModules = [ ];
   boot.initrd.kernelModules = [ ];
 
-  boot.kernelPackages = lib.mkDefault pkgs.linuxKernel.packages.linux_rpi3;
+  boot.kernelPackages = oldPkgs.linuxKernel.packages.linux_rpi3;
 
   # fix the following error :
   # modprobe: FATAL: Module tpm-crb not found in directory...
@@ -32,6 +42,102 @@
   ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
+
+  # Modified overlay to set dr_mode to "host". Original overlay here: https://github.com/raspberrypi/linux/blob/rpi-6.12.y/arch/arm/boot/dts/overlays/dwc2-overlay.dts
+  hardware.deviceTree = {
+    filter = "*rpi*.dtb";
+    overlays = [
+      {
+        name = "dwc2-overlay";
+        dtsText = ''
+          /dts-v1/;
+          /plugin/;
+
+          /{
+            compatible = "brcm,bcm2837";
+
+            fragment@0 {
+              target = <&usb>;
+              #address-cells = <1>;
+              #size-cells = <1>;
+              dwc2_usb: __overlay__ {
+                compatible = "brcm,bcm2835-usb";
+                dr_mode = "host";
+                g-np-tx-fifo-size = <32>;
+                g-rx-fifo-size = <558>;
+                g-tx-fifo-size = <512 512 512 512 512 256 256>;
+                status = "okay";
+              };
+            };
+          };
+        '';
+      }
+      {
+        name = "disable-bt-overlay";
+        dtsText = ''
+          /dts-v1/;
+          /plugin/;
+
+          /* Disable Bluetooth and restore UART0/ttyAMA0 over GPIOs 14 & 15. */
+
+          #include <dt-bindings/gpio/gpio.h>
+
+          /{
+            compatible = "brcm,bcm2835";
+
+            fragment@0 {
+              target = <&uart1>;
+              __overlay__ {
+                status = "disabled";
+              };
+            };
+
+            fragment@1 {
+              target = <&uart0>;
+              __overlay__ {
+                pinctrl-names = "default";
+                pinctrl-0 = <&uart0_pins>;
+                status = "okay";
+              };
+            };
+
+            fragment@2 {
+              target = <&bt>;
+              __overlay__ {
+                status = "disabled";
+              };
+            };
+
+            fragment@3 {
+              target = <&uart0_pins>;
+              __overlay__ {
+                brcm,pins;
+                brcm,function;
+                brcm,pull;
+              };
+            };
+
+            fragment@4 {
+              target = <&bt_pins>;
+              __overlay__ {
+                brcm,pins;
+                brcm,function;
+                brcm,pull;
+              };
+            };
+
+            fragment@5 {
+              target-path = "/aliases";
+              __overlay__ {
+                serial0 = "/soc/serial@7e201000";
+                serial1 = "/soc/serial@7e215040";
+              };
+            };
+          };
+        '';
+      }
+    ];
+  };
 
   boot.loader.grub.enable = false;
   boot.loader.generic-extlinux-compatible.enable = true;

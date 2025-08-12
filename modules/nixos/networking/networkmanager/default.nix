@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  hardware,
   ...
 }:
 
@@ -15,7 +16,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    networking.networkmanager.enable = true;
+    networking.networkmanager = {
+      enable = true;
+      wifi.powersave = !hardware.ac;
+    };
 
     phoenix.users.extraGroups = [ "networkmanager" ];
   };
