@@ -25,6 +25,7 @@ in
     home.packages = with pkgs; [
       gnome-tweaks
       valent
+      smile
     ];
 
     programs.gnome-shell = {
@@ -54,6 +55,7 @@ in
           lineup
           brightness-control-using-ddcutil
           custom-hot-corners-extended
+          smile-complementary-extension
         ];
     };
   };
