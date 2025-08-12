@@ -56,6 +56,7 @@ in
           brightness-control-using-ddcutil
           custom-hot-corners-extended
           smile-complementary-extension
+          advanced-alttab-window-switcher
         ];
     };
   };
