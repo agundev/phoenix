@@ -8,7 +8,6 @@
 let
   cfg = config.phoenix.services.vinci-screen;
   src = pkgs.applyPatches {
-    name = "DWIN_T5UIC1_LCD_E3S1";
     src = pkgs.fetchFromGitHub {
       owner = "RobRobM";
       repo = "DWIN_T5UIC1_LCD_E3S1";
@@ -19,7 +18,7 @@ let
       (pkgs.writeText "options.patch" (
         builtins.replaceStrings
           [ "<apikey>" "<port>" ]
-          [ cfg.apikey (toString config.services.moonraker.port) ]
+          [ cfg.apikey (builtins.toString config.services.moonraker.port) ]
           (builtins.readFile ./options.patch)
       ))
     ];

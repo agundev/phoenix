@@ -20,6 +20,8 @@ in
         enable = true;
         enableOnBoot = true;
       };
+
+      oci-containers.backend = "docker";
     };
 
     phoenix.users.extraGroups = [ "docker" ];

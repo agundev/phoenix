@@ -29,6 +29,10 @@
         sslCertificate = ./cert.pem;
         sslCertificateKey = ./key.pem;
       };
+      moonraker-obico = {
+        enable = true;
+        server = "https://obico.hopkinwood.gundu.me";
+      };
       vinci-webcam.enable = true;
     };
     locale = {

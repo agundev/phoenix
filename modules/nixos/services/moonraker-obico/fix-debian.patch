@@ -1,0 +1,36 @@
+diff --git a/moonraker_obico/janus_config_builder.py b/moonraker_obico/janus_config_builder.py
+index 45212f3..4e7b365 100644
+--- a/moonraker_obico/janus_config_builder.py
++++ b/moonraker_obico/janus_config_builder.py
+@@ -29,30 +29,7 @@ def janus_jcfg_folders_section(lib_dir):
+ """.format(lib_dir=lib_dir)
+ 
+ def find_system_janus_paths():
+-    janus_path = None
+-    janus_lib_path = None
+-
+-    try:
+-        output = subprocess.check_output(['dpkg', '-L', 'janus'], universal_newlines=True)
+-        paths = output.split('\n')
+-
+-        # janus binary path if only 1 line ends with /bin/janus
+-        janus_paths = [path.strip() for path in paths if path.strip().endswith('/bin/janus')]
+-        if len(janus_paths) == 1:
+-            janus_path = janus_paths[0]
+-
+-        # janus lib path if line contains plugins/libjanus_streaming.so
+-        janus_lib_paths = [path.strip() for path in paths if '/janus/plugins/libjanus_streaming.so' in path]
+-        if janus_lib_paths:
+-            janus_lib_path = os.path.dirname(janus_lib_paths[0])
+-            janus_lib_path = os.path.normpath(janus_lib_path)
+-            if janus_lib_path.endswith('/janus/plugins'):
+-                janus_lib_path = janus_lib_path[:-14]  # remove "/plugins" from the end
+-
+-    except (subprocess.CalledProcessError, FileNotFoundError):
+-        pass
+-
+-    return (janus_path, janus_lib_path)
++    return ("<bin_path>", "<lib_path>")
+
+
+ def build_janus_jcfg(auth_token):

@@ -51,12 +51,14 @@ in
       };
     };
 
-    # services.go2rtc = {
-    #   enable = true;
-    #   settings.streams = {
-    #     vinci_high = "ffmpeg:device?video=/dev/video0&input_format=mjpeg&video_size=1920x1080&framerate=30";
-    #     vinci_medium = "ffmpeg:vinci_high#raw=-pix_fmt yuv420p#width=1280#video=h264#hardware";
-    #   };
-    # };
+    services.go2rtc = {
+      enable = true;
+      settings = {
+        api.origin = "*";
+        streams = {
+          vinci = "ffmpeg:http://localhost:8080/video.mp4#input=file#video=copy";
+        };
+      };
+    };
   };
 }
