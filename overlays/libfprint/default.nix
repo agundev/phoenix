@@ -14,13 +14,13 @@ final: prev: {
     mesonFlags = prev.lib.remove "-Ddrivers=all" oldAttrs.mesonFlags;
   });
 
-  libfprint-grosshack = prev.stdenv.mkDerivation rec {
+  libfprint-grosshack = prev.stdenv.mkDerivation (finalAttrs: {
     pname = "libfprint-grosshack";
     version = "0.3.0";
     src = prev.fetchFromGitLab {
       owner = "mishakmak";
       repo = "pam-fprint-grosshack";
-      tag = "v${version}";
+      tag = "v${finalAttrs.version}";
       sha256 = "sha256-obczZbf/oH4xGaVvp3y3ZyDdYhZnxlCWvL0irgEYIi0=";
     };
 
@@ -43,5 +43,5 @@ final: prev: {
     ];
 
     mesonFlags = [ "-Dpam_modules_dir=${placeholder "out"}/lib/security" ];
-  };
+  });
 }

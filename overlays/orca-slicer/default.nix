@@ -1,5 +1,5 @@
 final: prev: {
-  orca-slicer = prev.stdenv.mkDerivation rec {
+  orca-slicer = prev.stdenv.mkDerivation (finalAttrs: {
     inherit (prev.orca-slicer) pname version meta;
 
     src = prev.orca-slicer;
@@ -18,5 +18,5 @@ final: prev: {
           ]
         }" 
     '';
-  };
+  });
 }

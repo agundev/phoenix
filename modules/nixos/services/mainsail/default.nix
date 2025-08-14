@@ -58,6 +58,11 @@ in
 
         octoprint_compat = { };
 
+        timelapse = {
+          output_path = "${config.services.moonraker.stateDir}/timelapse/";
+          ffmpeg_binary_path = "${pkgs.ffmpeg}/bin/ffmpeg";
+        };
+
         history = { };
 
         spoolman = {
@@ -69,6 +74,10 @@ in
         };
       };
     };
+
+    # moonraker-timelapse
+    systemd.services.moonraker.path = [ pkgs.wget ];
+    phoenix.programs.klipper.extraIncludes = [ pkgs.moonraker-timelapse.macroFile ];
 
     users.users.moonraker.extraGroups = [ "klipper" ];
     systemd.tmpfiles.rules = [

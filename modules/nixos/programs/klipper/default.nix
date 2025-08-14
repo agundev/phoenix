@@ -15,10 +15,17 @@ let
   };
 in
 {
-  options.phoenix.programs.klipper.enable = lib.mkOption {
-    type = lib.types.bool;
-    default = false;
-    description = "Enable Klipper 3D Printer firmware.";
+  options.phoenix.programs.klipper = {
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Enable Klipper 3D Printer firmware.";
+    };
+    extraIncludes = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [];
+      description = "Extra includes for the Klipper config file.";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -47,6 +54,9 @@ in
         [include ${kamp}/Configuration/Adaptive_Meshing.cfg]
         [include ${kamp}/Configuration/Smart_Park.cfg]
         [include ${kamp}/Configuration/Line_Purge.cfg]
+
+        # Extra includes
+        ${lib.concatMapStringsSep "\n" (f: "[include ${f}]") cfg.extraIncludes}
 
         ${builtins.readFile ./kamp.cfg}
         ${builtins.readFile ./vinci.cfg}

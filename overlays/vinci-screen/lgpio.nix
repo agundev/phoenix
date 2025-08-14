@@ -31,14 +31,14 @@ let
       preBuild = if pyProject == "PY_LGPIO" then ''swig -python lgpio.i'' else "";
 
     in
-    mkDerivation rec {
+    mkDerivation (finalAttrs: {
       pname = "lgpio";
       version = "0.2.2";
 
       src = fetchFromGitHub {
         owner = "joan2937";
         repo = "lg";
-        rev = "v${version}";
+        rev = "v${finalAttrs.version}";
         hash = "sha256-92lLV+EMuJj4Ul89KIFHkpPxVMr/VvKGEocYSW2tFiE=";
       };
 
@@ -57,7 +57,7 @@ let
         license = with licenses; [ unlicense ];
         maintainers = with maintainers; [ doronbehar ];
       };
-    };
+    });
 in
 
 rec {

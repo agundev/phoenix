@@ -3,7 +3,7 @@ final: prev: {
     with prev.python3Packages;
     prev.python3Packages
     // {
-      multitimer = buildPythonPackage rec {
+      multitimer = buildPythonPackage (finalAttrs: {
         pname = "multitimer";
         version = "0.3";
 
@@ -19,18 +19,18 @@ final: prev: {
         ];
 
         meta = {
-          changelog = "https://github.com/joshburnett/multitimer/releases/tag/${version}";
+          changelog = "https://github.com/joshburnett/multitimer/releases/tag/${finalAttrs.version}";
           homepage = "https://github.com/joshburnett/multitimer";
           description = "A pure-python periodic timer that can be started multiple times";
           license = lib.licenses.mit;
         };
-      };
-      rpi-lgpio = buildPythonPackage rec {
+      });
+      rpi-lgpio = buildPythonPackage (finalAttrs: {
         pname = "rpi-lgpio";
         version = "0.6";
 
         src = fetchPypi {
-          inherit version;
+          inherit (finalAttrs) version;
           pname = "rpi_lgpio";
           hash = "sha256-hFebEdVDu4q93cHhD81r3CgZ5Yl75y1pSaKwRNcftz4=";
         };
@@ -45,11 +45,11 @@ final: prev: {
         ];
 
         meta = {
-          changelog = "https://github.com/waveform80/rpi-lgpio/releases/tag/${version}";
+          changelog = "https://github.com/waveform80/rpi-lgpio/releases/tag/${finalAttrs.version}";
           homepage = "https://github.com/waveform80/rpi-lgpio";
           description = "A compatibility shim for lgpio emulating the RPi.GPIO API";
           license = lib.licenses.mit;
         };
-      };
+      });
     };
 }
