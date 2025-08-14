@@ -26,8 +26,6 @@
     services = {
       mainsail = {
         enable = true;
-        sslCertificate = ./cert.pem;
-        sslCertificateKey = ./key.pem;
       };
       moonraker-obico = {
         enable = true;

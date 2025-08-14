@@ -50,15 +50,5 @@ in
         MemoryMax = "250M";
       };
     };
-
-    services.go2rtc = {
-      enable = true;
-      settings = {
-        api.origin = "*";
-        streams = {
-          vinci = "ffmpeg:http://localhost:8080/video.mp4#input=file#video=copy";
-        };
-      };
-    };
   };
 }

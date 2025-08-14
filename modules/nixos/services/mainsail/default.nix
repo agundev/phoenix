@@ -25,26 +25,11 @@ in
       default = false;
       description = "Enable Mainsail klipper client.";
     };
-    https = lib.mkOption {
-      type = lib.types.bool;
-      default = true;
-      description = "Serve Mainsail over HTTPS.";
-    };
-    sslCertificate = lib.mkOption {
-      type = lib.types.path;
-      default = "";
-      description = "Path to the SSL certificate.";
-    };
-    sslCertificateKey = lib.mkOption {
-      type = lib.types.path;
-      default = "";
-      description = "Path to the SSL certificate key.";
-    };
   };
 
   config = lib.mkIf cfg.enable {
     phoenix.programs.klipper.enable = true;
-    phoenix.services.spoolman.enable = true;
+
     services.moonraker = {
       enable = true;
       allowSystemControl = true;
@@ -62,12 +47,12 @@ in
           trusted_clients = [
             "10.0.0.0/8"
             "127.0.0.0/8"
-            "169.254.0.0/16"
             "172.16.0.0/12"
             "192.168.0.0/16"
-            "100.111.0.0/16"
+            "100.0.0.0/8"
             "FE80::/10"
             "::1/128"
+            "FD7A:115C:A1E0::/48"
           ];
         };
 
@@ -76,7 +61,7 @@ in
         history = { };
 
         spoolman = {
-          server = "http://localhost:7912";
+          server = "https://spoolman.hopkinwood.gundu.me";
         };
 
         announcements = {
@@ -92,14 +77,7 @@ in
       "L /var/lib/moonraker/config/klipper.cfg - - - - /var/lib/klipper/printer.cfg"
     ];
 
-    services.mainsail = {
-      enable = true;
-      nginx = lib.mkIf cfg.https {
-        addSSL = true;
-        sslCertificate = cfg.sslCertificate;
-        sslCertificateKey = cfg.sslCertificateKey;
-      };
-    };
+    services.mainsail.enable = true;
     services.nginx.clientMaxBodySize = "100M";
   };
 }
