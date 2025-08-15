@@ -34,7 +34,7 @@ in
             --camera-video.height=720 \
             --camera-video.options=h264_i_frame_period=15 \
             --camera-stream.height=480 \
-            --camera-nbufs=2 \
+            --camera-nbufs=4 \
             --http-listen=0.0.0.0 \
             --http-port=8080
         '';
