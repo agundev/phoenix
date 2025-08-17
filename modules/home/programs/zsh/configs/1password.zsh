@@ -1,1 +1,3 @@
-source ~/.config/op/plugins.sh
+if [[ -r "$HOME/.config/op/plugins.sh" ]]; then
+    source "$HOME/.config/op/plugins.sh"
+fi

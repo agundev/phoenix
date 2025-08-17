@@ -15,6 +15,7 @@
     };
   };
 
+  home.homeDirectory = lib.mkForce "/root";
   home.packages = with pkgs; [
     # apps
     fastfetch
