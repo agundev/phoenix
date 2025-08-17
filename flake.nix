@@ -22,7 +22,7 @@ rec {
     };
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixos-hardware.url = "github:geodic/nixos-hardware/fixes";
-    stylix.url = "github:geodic/stylix/gdm-icon-theme";
+    stylix.url = "github:nix-community/stylix";
     nixcord.url = "github:kaylorben/nixcord";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     deploy-rs.url = "github:serokell/deploy-rs";
@@ -209,6 +209,7 @@ rec {
             devShells.default = pkgs.mkShell {
               packages = with pkgs; [
                 pkgs.deploy-rs
+                transcrypt
                 nixfmt-rfc-style
                 ack
               ];
