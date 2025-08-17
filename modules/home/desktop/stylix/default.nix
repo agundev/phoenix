@@ -40,6 +40,13 @@ in
       size = 32;
     };
 
+    stylix.iconTheme = {
+      enable = true;
+      package = pkgs.morewaita-icon-theme;
+      light = "MoreWaita";
+      dark = "MoreWaita";
+    };
+
     stylix.polarity = "dark";
     stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-soft.yaml";
   };
