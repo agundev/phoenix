@@ -22,6 +22,7 @@
     networking = {
       firewall.enable = true;
       tailscale.enable = true;
+      networkmanager.enable = true;
     };
     locale = {
       eastern.enable = true;
