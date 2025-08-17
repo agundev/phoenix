@@ -75,9 +75,22 @@ rec {
                 ram = 8 * 1024;
                 ac = true;
               };
-              homes = [ ];
+              homes = [ "root" ];
             };
-            config = lib.recursiveUpdate defaultConfig (import ./hosts/${hostname}/config.nix);
+            config =
+              let
+              deepMerge = lhs: rhs:
+                if builtins.isList lhs && builtins.isList rhs then
+                lhs ++ rhs
+                else if builtins.isAttrs lhs && builtins.isAttrs rhs then
+                lib.mapAttrs
+                  (k: _: deepMerge (lhs.${k} or null) (rhs.${k} or null))
+                  (lhs // rhs)
+                else if lhs == null then rhs
+                else if rhs == null then lhs
+                else rhs;
+              in
+              deepMerge defaultConfig (import ./hosts/${hostname}/config.nix);
             deployPkgs = import nixpkgs {
               inherit (config.hardware) system;
               overlays = [
