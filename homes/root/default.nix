@@ -18,6 +18,7 @@
   home.homeDirectory = lib.mkForce "/root";
   home.packages = with pkgs; [
     # apps
+    git
     fastfetch
     micro
 
