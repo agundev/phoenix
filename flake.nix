@@ -73,6 +73,7 @@ rec {
               hardware = {
                 system = "x86_64-linux";
                 ram = 8 * 1024;
+                ac = true;
               };
               homes = [ ];
             };
@@ -125,6 +126,7 @@ rec {
                     lib
                     hostname
                     ;
+                  secrets = import ./secrets.nix;
                 };
               }
             );
@@ -202,6 +204,7 @@ rec {
                     system
                     username
                     ;
+                  secrets = import ./secrets.nix;
                 };
               }
             ) (builtins.readDir ./homes);
@@ -209,6 +212,7 @@ rec {
             devShells.default = pkgs.mkShell {
               packages = with pkgs; [
                 pkgs.deploy-rs
+                openssl
                 transcrypt
                 nixfmt-rfc-style
                 ack
