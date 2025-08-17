@@ -36,13 +36,16 @@ in
     systemd.services.vinci-mobile-camera = {
       description = "A Webcam service for Vinci";
       wantedBy = [ "multi-user.target" ];
-      after = [ "network.service" "adb.service" ];
+      after = [
+        "network.service"
+        "adb.service"
+      ];
       path = with pkgs; [ android-tools ];
       serviceConfig = {
         Type = "simple";
         ExecStartPre = "${pkgs.android-tools}/bin/adb wait-for-usb-device";
         ExecStart = serve;
-        TimeoutStartSec="infinity";
+        TimeoutStartSec = "infinity";
         Restart = "always";
       };
     };

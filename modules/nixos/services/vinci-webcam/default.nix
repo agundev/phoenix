@@ -41,7 +41,7 @@ in
         Restart = "always";
 
         DynamicUser = true;
-        SupplementaryGroups = [ "video"];
+        SupplementaryGroups = [ "video" ];
 
         IOSchedulingClass = "idle";
         IOSchedulingPriority = 7;

@@ -18,14 +18,15 @@ final: prev: {
       cp -r ./* $out/lib/${finalAttrs.pname}/
     '';
 
-    passthru.moonrakerOverrideAttrs = let
-      pkg = finalAttrs.finalPackage;
-    in
+    passthru.moonrakerOverrideAttrs =
+      let
+        pkg = finalAttrs.finalPackage;
+      in
       (prevAttrs: {
         installPhase = (prevAttrs.installPhase or "") + ''
           cp ${pkg}/lib/${finalAttrs.pname}/component/timelapse.py $out/lib/moonraker/components/timelapse.py
         '';
-      });  
+      });
 
     passthru.macroFile = "${finalAttrs.finalPackage}/lib/${finalAttrs.pname}/klipper_macro/timelapse.cfg";
   });

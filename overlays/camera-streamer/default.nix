@@ -1,14 +1,18 @@
 final: prev:
 let
   # We have to use this workaround until trixie support is merged
-  oldPkgs = import (builtins.fetchTarball {
-    url = "https://github.com/NixOS/nixpkgs/archive/c407032be28ca2236f45c49cfb2b8b3885294f7f.tar.gz";
-    sha256 = "1a95d5g5frzgbywpq7z0az8ap99fljqk3pkm296asrvns8qcv5bv";
-  }) {
-    system = prev.stdenv.system;
-    config = prev.config;
-  };
-in {
+  oldPkgs =
+    import
+      (builtins.fetchTarball {
+        url = "https://github.com/NixOS/nixpkgs/archive/c407032be28ca2236f45c49cfb2b8b3885294f7f.tar.gz";
+        sha256 = "1a95d5g5frzgbywpq7z0az8ap99fljqk3pkm296asrvns8qcv5bv";
+      })
+      {
+        system = prev.stdenv.system;
+        config = prev.config;
+      };
+in
+{
   # Thanks to Electrostasy for the initial derivation
   # Code stolen from https://github.com/Electrostasy/dots/blob/master/pkgs/camera-streamer.nix
   camera-streamer = oldPkgs.stdenv.mkDerivation (finalAttrs: {
@@ -51,7 +55,14 @@ in {
     dontUseCmakeConfigure = true;
 
     # All optional features enabled
-    buildInputs = with oldPkgs; [ nlohmann_json v4l-utils ffmpeg libcamera live555 openssl ];
+    buildInputs = with oldPkgs; [
+      nlohmann_json
+      v4l-utils
+      ffmpeg
+      libcamera
+      live555
+      openssl
+    ];
 
     installFlags = [ "DESTDIR=${builtins.placeholder "out"}" ];
     preInstall = "mkdir -p $out/bin";

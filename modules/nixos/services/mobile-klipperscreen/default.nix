@@ -55,7 +55,10 @@ in
     systemd.services.klipperscreen = {
       description = "A cool and modern user interface for Klipper";
       wantedBy = [ "multi-user.target" ];
-      after = [ "moonraker.service" "adb.service" ];
+      after = [
+        "moonraker.service"
+        "adb.service"
+      ];
       path = with pkgs; [
         git
         android-tools
@@ -68,7 +71,7 @@ in
         Type = "simple";
         ExecStartPre = prestart;
         ExecStart = "${pkgs.klipperscreen}/bin/KlipperScreen";
-        TimeoutStartSec="infinity";
+        TimeoutStartSec = "infinity";
         Restart = "always";
         User = "klipperscreen";
         Group = "klipperscreen";

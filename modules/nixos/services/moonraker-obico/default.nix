@@ -18,25 +18,26 @@ let
     };
     patches = [
       (pkgs.writeText "fix-debian.patch" (
-        builtins.replaceStrings
-          [ "<bin_path>" "<lib_path>" ]
-          [ "${janus}/bin/janus" "${janus}/lib" ]
-          (builtins.readFile ./fix-debian.patch)
+        builtins.replaceStrings [ "<bin_path>" "<lib_path>" ] [ "${janus}/bin/janus" "${janus}/lib" ] (
+          builtins.readFile ./fix-debian.patch
+        )
       ))
     ];
   };
-  pythonEnv = pkgs.python3.withPackages (ps: with ps; [
-    websocket-client
-    bson
-    backoff
-    pathvalidate
-    sentry-sdk
-    requests
-    sarge
-    flask
-    netaddr
-    distro
-  ]);
+  pythonEnv = pkgs.python3.withPackages (
+    ps: with ps; [
+      websocket-client
+      bson
+      backoff
+      pathvalidate
+      sentry-sdk
+      requests
+      sarge
+      flask
+      netaddr
+      distro
+    ]
+  );
   prestart = pkgs.writeShellScript "moonraker-obico-prestart" ''
     cp -r ${src}/* $RUNTIME_DIRECTORY
     chmod -R 755 $RUNTIME_DIRECTORY

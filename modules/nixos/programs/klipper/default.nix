@@ -23,7 +23,7 @@ in
     };
     extraIncludes = lib.mkOption {
       type = lib.types.listOf lib.types.str;
-      default = [];
+      default = [ ];
       description = "Extra includes for the Klipper config file.";
     };
   };
