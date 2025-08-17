@@ -10,7 +10,7 @@ in
 {
   options.phoenix.boot.systemd-boot.enable = lib.mkOption {
     type = lib.types.bool;
-    default = false;
+    default = true;
     description = "Enable systemd-boot bootloader.";
   };
 

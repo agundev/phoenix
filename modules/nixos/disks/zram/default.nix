@@ -10,7 +10,7 @@ in
 {
   options.phoenix.disks.zram.enable = lib.mkOption {
     type = lib.types.bool;
-    default = false;
+    default = true;
     description = "Enable ZRAM swap configuration.";
   };
 

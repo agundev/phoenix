@@ -13,16 +13,7 @@
 {
   phoenix = {
     boot = {
-      systemd-initrd.enable = true;
-    };
-    disks = {
-      swap.enable = true;
-      zram.enable = true;
-    };
-    networking = {
-      firewall.enable = true;
-      tailscale.enable = true;
-      networkmanager.enable = true;
+      systemd-boot.enable = false;
     };
     services = {
       mainsail = {
@@ -33,9 +24,6 @@
         server = "https://obico.${secrets.homeserver.domains.private}";
       };
       vinci-webcam.enable = true;
-    };
-    locale = {
-      eastern.enable = true;
     };
   };
 }

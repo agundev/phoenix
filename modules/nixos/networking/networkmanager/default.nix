@@ -11,7 +11,7 @@ in
 {
   options.phoenix.networking.networkmanager.enable = lib.mkOption {
     type = lib.types.bool;
-    default = false;
+    default = true;
     description = "Enable NetworkManager service.";
   };
 

@@ -10,30 +10,14 @@
 }:
 {
   phoenix = {
-    boot = {
-      systemd-boot.enable = true;
-      systemd-initrd.enable = true;
-      plymouth.enable = true;
-    };
     hardware = {
       fprint.enable = true;
-    };
-    disks = {
-      swap.enable = true;
-      zram.enable = true;
     };
     desktop = {
       gnome.enable = true;
       flatpak.enable = true;
       v4l2.enable = true;
       ddcci.enable = true;
-    };
-    networking = {
-      firewall.enable = true;
-      tailscale.enable = true;
-    };
-    locale = {
-      eastern.enable = true;
     };
     users = {
       mainUser = "advaith";

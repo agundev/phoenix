@@ -19,7 +19,6 @@ in
 
   config = lib.mkIf cfg.enable {
     phoenix = {
-      networking.networkmanager.enable = true;
       audio.pipewire.enable = true;
       desktop.printing.enable = true;
     };

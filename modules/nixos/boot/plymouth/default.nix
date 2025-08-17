@@ -10,7 +10,7 @@ in
 {
   options.phoenix.boot.plymouth.enable = lib.mkOption {
     type = lib.types.bool;
-    default = false;
+    default = true;
     description = "Enable Plymouth boot splash configuration.";
   };
 

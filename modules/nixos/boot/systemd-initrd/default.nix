@@ -10,7 +10,7 @@ in
 {
   options.phoenix.boot.systemd-initrd.enable = lib.mkOption {
     type = lib.types.bool;
-    default = false;
+    default = true;
     description = "Enable systemd initramfs.";
   };
 

@@ -9,23 +9,5 @@
   ...
 }:
 {
-  phoenix = {
-    boot = {
-      systemd-boot.enable = true;
-      systemd-initrd.enable = true;
-      plymouth.enable = true;
-    };
-    disks = {
-      swap.enable = true;
-      zram.enable = true;
-    };
-    networking = {
-      firewall.enable = true;
-      tailscale.enable = true;
-      networkmanager.enable = true;
-    };
-    locale = {
-      eastern.enable = true;
-    };
-  };
+  phoenix = { };
 }

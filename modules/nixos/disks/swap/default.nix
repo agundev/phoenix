@@ -11,7 +11,7 @@ in
 {
   options.phoenix.disks.swap.enable = lib.mkOption {
     type = lib.types.bool;
-    default = false;
+    default = true;
     description = "Enable swap device configuration.";
   };
 
