@@ -1,8 +1,7 @@
 name: "Deploy"
 
 on:
-  pull_request:
-  push:
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
