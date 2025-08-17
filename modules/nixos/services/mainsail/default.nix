@@ -3,6 +3,7 @@
   lib,
   hostname,
   pkgs,
+  secrets,
   ...
 }:
 
@@ -66,7 +67,7 @@ in
         history = { };
 
         spoolman = {
-          server = "https://spoolman.hopkinwood.gundu.me";
+          server = "https://spoolman.${secrets.homeserver.domains.private}";
         };
 
         announcements = {

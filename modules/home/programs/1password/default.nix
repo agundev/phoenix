@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  secrets,
   ...
 }:
 
@@ -40,11 +41,11 @@ in
         };
         includes = [
           {
-            condition = "gitdir:Geodic/";
+            condition = "gitdir:${lib.strings.toSentenceCase secrets.identities.public.name}/";
             contents = {
               user = {
-                name = "geodic";
-                email = "th3geodic@proton.me";
+                name = secrets.identities.public.name;
+                email = secrets.identities.public.email;
                 signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBY7Gr5L2ObD1KE3w8PXG0ilvYnPsPXgyIg3xIwQQZfW";
               };
             };
@@ -53,8 +54,8 @@ in
             condition = "gitdir:Personal/";
             contents = {
               user = {
-                name = "agundev";
-                email = "advaith@gundu.me";
+                name = secrets.identities.personal.name;
+                email = secrets.identities.personal.email;
                 signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDWtwI+dIN//xWbUbDcO3o0EnqkMnlmIegO01bYHHhgb";
               };
             };

@@ -7,6 +7,7 @@
   pkgs,
   lib,
   inputs,
+  secrets,
   ...
 }:
 {
@@ -29,7 +30,7 @@
       };
       moonraker-obico = {
         enable = true;
-        server = "https://obico.hopkinwood.gundu.me";
+        server = "https://obico.${secrets.homeserver.domains.private}";
       };
       vinci-webcam.enable = true;
     };
