@@ -7,6 +7,26 @@
 
 let
   cfg = config.phoenix.programs.zsh;
+  zshPlugin = name: rec {
+    inherit name;
+    src =
+      let
+        attr = if lib.hasPrefix "zsh" name then name else "zsh-${name}";
+      in
+      builtins.getAttr attr pkgs;
+    file =
+      let
+        candidates = [
+          "share/${name}/${name}.plugin.zsh"
+          "share/${name}/${name}.zsh"
+          "share/zsh/site-functions/${name}.plugin.zsh"
+          "share/zsh/site-functions/${name}.zsh"
+        ];
+        exists = rel: builtins.pathExists (builtins.toPath "${src}/${rel}");
+      in
+      lib.findFirst exists (builtins.head candidates) candidates;
+    completions = [ "share/zsh/site-functions" ];
+  };
 in
 {
   options.phoenix.programs.zsh.enable = lib.mkOption {
@@ -18,27 +38,13 @@ in
   config = lib.mkIf cfg.enable {
     programs.zsh = {
       enable = true;
-      antidote = {
-        enable = true;
-        plugins = [
-          "Aloxaf/fzf-tab"
-          "jeffreytse/zsh-vi-mode"
-          "zsh-users/zsh-autosuggestions"
-          "zdharma-continuum/fast-syntax-highlighting"
-          "tom-doerr/zsh_codex"
-        ];
-      };
+      plugins = map zshPlugin [
+        "fzf-tab"
+        "zsh-vi-mode"
+        "zsh-autosuggestions"
+        "fast-syntax-highlighting"
+      ];
       initContent = builtins.concatStringsSep "\n" [
-        ''
-          # Create Python environment with openai and google-generativeai
-          export ZSH_CODEX_PYTHON="${
-            pkgs.python3.withPackages (ps: [
-              ps.openai
-              ps.google-generativeai
-              ps.groq
-            ])
-          }/bin/python"
-        ''
         (builtins.readFile ./environment.zsh)
         (builtins.readFile ./functions.zsh)
         (builtins.concatStringsSep "\n" (
